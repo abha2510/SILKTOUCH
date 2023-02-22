@@ -26,15 +26,6 @@ productRouter.post("/addproduct",async(req,res)=>{
 
 
 
-// {
-//     "name":"Abha",
-//     "email":"abha@gmail.com",
-//     "confirm_email":"abha@gmail.com",
-//     "password":"abha",
-//     "confirm_password":"abha",
-//     "mobile":7896543210
-//     }
-
 productRouter.patch("/update/:id",async(req,res)=>{
     const payload=req.body;
     const id=req.params.id;
