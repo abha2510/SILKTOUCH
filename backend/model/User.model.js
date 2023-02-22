@@ -31,6 +31,9 @@ const userSchema = new mongoose.Schema({
     loyalty:{
         type: String,
     },
+    userId:{
+         type:String
+    },
     cart:[
         {
             id: String,
@@ -49,6 +52,8 @@ const userSchema = new mongoose.Schema({
             total_item_in_cart: Number,
             likes: Number,
             stocks: Number,
+            gender:String,
+            brand:String
 
         }
     ]
