@@ -21,6 +21,7 @@ const cartSchema = new mongoose.Schema(
         item_in_cart: String,
         item_like: String,
         item_stock: String,  
+        userId:String
     },
     {
     versionKey: false,
