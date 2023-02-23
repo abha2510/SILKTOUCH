@@ -32,27 +32,69 @@ cartRouter.patch("/addtocart", async (req, res) => {
 });
 
 
+cartRouter.delete("/delete/:userId/:itemID", async (req, res) => {
+    const userId = req.params.userId;
+    const itemID=req.params.itemID;
+    // it will take user id and order id then it find and set perticular data to that(updated value) // 
+    const payload=req.body;
+    try{
+      await UserModel.deleteOne( {  "cart._id": itemID})
+          res.status(200).send([{"msg":"Delete Succesfully"}])
+    }
+    catch(err){
+      res.status(500).send([{"err":"something went wrong","err":err}])
+    }
+  });
 
-cartRouter.delete("/delete/:id", async (req, res) => {
-    const itemID=req.params.id;
 
-    const userID=req.body.userId;
+// cartRouter.delete("/delete/:id", async (req, res) => {
+//     const itemID=req.params.id;
+
+//     const userID=req.body.userId;
  
-    const user=await UserModel.findOne({_id:userID})
-    console.log(user.cart);
-     let arr=[];
-     user.cart.map((el)=>{
-         if(el.id===itemID){
-             arr.push(el)
-             //console.log(el);
-        }else{
-            console.log('buddhu ladki')
-        }
-    })
-    //console.log(arr)
-//   await UserModel.findByIdAndDelete({_id})
-     res.send(user) 
-});
+//     const user=await UserModel.findOne({_id:userID})
+//  console.log(user.cart[0]._id ,"ghjklklk;;j");
+//     const del = await  UserModel.findByIdAndDelete(user.cart[0]._id)
+//     console.log(del)
+    
+//     //  let arr=[];
+//     //  user.cart.map((el)=>{
+//     //      if(el.id===itemID){
+//     //          arr.push(el)
+//     //          //console.log(el);
+//     //     }else{
+//     //         console.log('buddhu ladki')
+//     //     }
+//    // })
+//     //console.log(arr)
+// //   await UserModel.findByIdAndDelete({_id})
+//      res.send(user) 
+// });
+
+
+
+//  cartRouter.delete('/users/:userId/cart/:productId', (req, res) => {
+//     const userId = req.params.userId;
+//     const productId = req.params.productId;
+  
+//     // Find the user object with the specified ID
+//     const userIndex = data.findIndex(user => user._id === userId);
+  
+//     if (userIndex !== -1) {
+//       // Find the index of the product to delete within the cart array
+//       const cartIndex = data[userIndex].cart.findIndex(product => product._id === productId);
+  
+//       if (cartIndex !== -1) {
+//         // Delete the product from the cart array
+//         data[userIndex].cart.splice(cartIndex, 1);
+//         res.send(`Product with ID ${productId} has been removed from the cart.`);
+//       } else {
+//         res.status(404).json({ error: `Product with ID ${productId} not found in cart.` });
+//       }
+//     } else {
+//       res.status(404).json({ error: `User with ID ${userId} not found.` });
+//     }
+//   });
 
 
 module.exports={cartRouter}
@@ -60,7 +102,18 @@ module.exports={cartRouter}
 
 
 
-
+// UserRouter.post("/checkout/:id", async (req, res) => {
+//     const id = req.params.id;
+//   // all cart item came through the body and push the item;
+//     const payload=req.body;
+//     try{
+//       await UserModel.updateMany({_id:id}, { $push: { allorders: { $each: payload } } }),
+//           res.status(200).send([{"msg":"Order Placed Succesfully"}])
+//     }
+//     catch(err){
+//       res.status(500).send([{"err":"something went wrong","err":err}])
+//     }
+//   });
 
 
 
