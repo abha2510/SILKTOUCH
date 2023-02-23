@@ -6,6 +6,8 @@ const {productRouter}=require("./routes/Product.router")
 const {authenticate}=require("./middleware/authenticate.middleware")
 const {cartRouter}=require("./routes/Cart.router");
 const app=express();
+const cors=require("cors")
+app.use(cors())
 
 app.use(express.json());
 
