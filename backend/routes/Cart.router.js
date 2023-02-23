@@ -6,6 +6,9 @@ const cartRouter =express.Router();
 
 
 
+
+
+
 cartRouter.get("/",async(req,res)=>{
     const userId_making_req=req.body.userId;
     try {
@@ -49,6 +52,7 @@ cartRouter.patch("/update/inc/:id",async(req,res)=>{
     }
     })
 
+
     cartRouter.patch("/update/dec/:id",async(req,res)=>{
         //  const pay=req.body;
         const id=req.params.id;
@@ -88,4 +92,8 @@ cartRouter.patch("/update/inc/:id",async(req,res)=>{
         })
     
 
+
 module.exports={cartRouter}
+
+
+
