@@ -1,6 +1,7 @@
 // import Sidebar from "./admincomponents/sidebar/Sidebar";
 // import Topbar from "./admincomponents/topbar/Topbar";
 import "./App.css";
+import {Iron} from '../src/categoryFolder/allRoute/Iron/Iron'
 // import Home from "./adminpages/home/Home";
 // import   {Routes ,Route}  from "react-router-dom";
 // import UserList from "./adminpages/userList/UserList";
@@ -13,21 +14,7 @@ import "./App.css";
 function App() {
   return (
    <>
-    {/* <Routes>
-      <Topbar />
-      <div className="container">
-         <Sidebar />
-
-         <Route path="/dashboard"><Home /></Route>
-         <Route path="/users"><UserList /></Route>
-         <Route path="/user/:userId"><User /></Route>
-         <Route  path="/newUser"><NewUser /></Route>
-         <Route path="/products"><ProductList /></Route>
-         <Route path="/product/:productId"><Product /></Route>
-         <Route path="/newproduct"><NewProduct /></Route>
-
-      </div>
-    </Routes> */}
+    <Iron/>
    </>
   );
 }
