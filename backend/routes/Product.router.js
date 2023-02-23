@@ -35,7 +35,7 @@ productRouter.patch("/update/:id",async(req,res)=>{
     
     try {
         if(userId_making_req!==userId_in_product){
-            res.send({"msg":"You rae not Authorized"})
+            res.send({"msg":"product not found"})
         }else{
             await ProductModel.findByIdAndUpdate({"_id":id},payload);
             res.send("product has been updated")
@@ -53,7 +53,7 @@ productRouter.patch("/update/:id",async(req,res)=>{
         
         try {
             if(userId_making_req!==userId_in_product){
-                res.send({"msg":"You rae not Authorized"})
+                res.send({"msg":"product not found"})
             }else{
                 await ProductModel.findByIdAndDelete({"_id":id});
                 res.send("product has been deleted")
