@@ -27,7 +27,9 @@ function App() {
 // import Product from "./adminpages/product/Product";
 // import NewProduct from "./adminpages/newProduct/NewProduct";
 
-  )
-}
+
+  
+
+  )}
 
 export default App;
