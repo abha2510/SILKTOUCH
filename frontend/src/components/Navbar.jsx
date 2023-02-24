@@ -141,7 +141,7 @@ const Navbar = () => {
           <div style={{ display: "flex", gap: "50px" ,marginTop:"-30px"}}>
             <div id="dropdown-account">
               <div >
-                <Link to="" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Link to="/register" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <VscAccount size="1.6em" />
                   {/* <Text>{isAuth ? username : "Account"}</Text> */}
                 </Link>
@@ -194,7 +194,7 @@ const Navbar = () => {
             </div>
 
             <div class="dropdown">
-              <Link to="/cart"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <Link to="/cartpage"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
                 <div id="cart-icon">
                   <FaShoppingCart size="1.6em" />
                   {/* <p className="cartValue">{cartItems.length}</p> */}
@@ -220,7 +220,7 @@ const Navbar = () => {
           >
             <Link to=''><div id="menu-title">Brands</div></Link>
             <div id="menu-dropdown">
-              <Link to=''><div id="menu-title">Brower By</div></Link>
+              <Link to='/mobiles'><div id="menu-title">Brower By</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
@@ -340,7 +340,7 @@ const Navbar = () => {
             </div>
 
             <div id="menu-dropdown">
-              <Link to='/sale'> <div id="menu-title">Bestsellers</div></Link>
+              <Link to='/iron'> <div id="menu-title">Bestsellers</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ display: "flex", gap: "20px" }}>
@@ -358,7 +358,7 @@ const Navbar = () => {
                       >
                         <Flex gap={4} alignItems="center">
                           <BiDollar size="1.5em" />
-                          <Link to='/sale'> <p style={{ fontSize: "20px" }}>Sale</p></Link>
+                          <Link to=''> <p style={{ fontSize: "20px" }}>Sale</p></Link>
                         </Flex>
                       </div>
                       <div
@@ -375,7 +375,7 @@ const Navbar = () => {
                       >
                         <Flex gap={4} alignItems="center">
                           <MdLocalOffer size="1.5em" />
-                          <Link to='/sale'><p style={{ fontSize: "18px" }}>All Coupons</p></Link>
+                          <Link to=''><p style={{ fontSize: "18px" }}>All Coupons</p></Link>
                         </Flex>
                       </div>
                     </div>
@@ -393,7 +393,7 @@ const Navbar = () => {
                         }}
                       >
                         <Flex gap={4} alignItems="center">
-                          <Link to='/sale'><p style={{ fontSize: "18px" }}>Key Workers Discount</p></Link>
+                          <Link to=''><p style={{ fontSize: "18px" }}>Key Workers Discount</p></Link>
                         </Flex>
                       </div>
                       <div
@@ -410,7 +410,7 @@ const Navbar = () => {
                       >
                         <Flex gap={4} alignItems="center">
                           <TbDiscount2 size="1.5em" />
-                          <Link to='/sale'><p style={{ fontSize: "18px" }}>Fetures Offer</p></Link>
+                          <Link to=''><p style={{ fontSize: "18px" }}>Fetures Offer</p></Link>
                         </Flex>
                       </div>
                     </div>
@@ -458,7 +458,7 @@ const Navbar = () => {
             </div>
 
             <div id="menu-dropdown">
-              <Link to="care"><div id="menu-title">Skin Care</div></Link>
+              <Link to="/mobiles"><div id="menu-title">Skin Care</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
