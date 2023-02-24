@@ -1,0 +1,115 @@
+.login-container{
+  
+    background-color: rgb(242,242,242);
+    color: black;
+     max-height: auto;
+}
+
+
+.navbar{
+    height: 10vh;
+   
+    width: 100%;
+}
+
+.login-content{
+   
+    height: 110vh;
+    display: flex;
+    
+    justify-content: space-around;
+}
+
+.left-side{
+
+  height: 90vh;
+  width: 30%;
+  margin-top: 40px;
+  background-color: white;
+}
+
+.right-side{
+ background-color: white;
+  height: 30vh;
+  width: 40%;
+  margin-top: 40px;
+}
+
+.left-title{
+    
+     height: 10vh;
+     display: flex;
+     align-items: center;
+}
+
+.left-title > h1{
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: 30px;
+}
+
+.forget{
+  
+    display: flex;
+    margin-top: 30px;
+
+}
+.forget>h1{
+    margin-left: 30px;
+}
+
+.login-button{
+    width: 90%;
+    margin-top: 50px;
+    height: 7vh;
+    background-color: rgb(34,34,34);
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.upper-title-div-login{
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+}
+.upper-title-login{
+    margin-left: 30px;
+    font-weight: 400;
+    color: grey;
+}
+
+.accounts-container-login{
+    margin-top: 35px;
+    height: 8vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-login{
+    border: 1px solid grey;
+    width: 40%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-login > h1{
+    font-size: 20px;
+    color: grey;
+}
+
+.right-login > h1{
+    font-size: 20px;
+    color: grey;
+}
+
+.right-login{
+    border: 1px solid grey;
+    width: 40%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

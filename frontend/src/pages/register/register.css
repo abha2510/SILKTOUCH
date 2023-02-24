@@ -1,0 +1,222 @@
+.register-container{
+    height: 220vh;
+    background-color: rgb(242,242,242);
+    color: black;
+}
+
+.navbar{
+    height: 10vh;
+    border: 1px solid red;
+    width: 100%;
+}
+
+.register-content{
+    border: 1px solid green;
+    height: 210vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form{
+   
+    height: 190vh;
+    width: 50%;
+    background-color: white;
+    
+}
+
+.register-title-container{
+   
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+    width: 80%;
+}
+.register-title{
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: 30px;
+}
+
+.input-container{
+
+    height: 150vh;
+}
+
+.upper-part{
+  
+    height: 15vh;
+    margin-top: 30px;
+  
+}
+.upper-title-div{
+
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+
+}
+
+.upper-title{
+    margin-left: 30px;
+    font-weight: 400;
+    color: grey;
+}
+
+.accounts-container{
+    
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.left{
+    border: 1px solid grey;
+    width: 40%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left > h1{
+    font-size: 20px;
+    color: grey;
+}
+
+.right{
+    border: 1px solid grey;
+    width: 40%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right > h1{
+    font-size: 20px;
+    color: grey;
+}
+
+.lower-part{
+  
+    height: 110vh;
+    margin-top: 30px;
+  
+}
+
+.lower-title-div{
+    
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+}
+
+.lower-title{
+    margin-left: 30px;
+    font-weight: 400;
+    color: grey;
+}
+.input-tags-div{
+   
+    height: 115vh;
+    margin-top: 20px;
+}
+
+.input-title-div{
+  
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+}
+
+.input-title{
+    margin-left: 30px;
+    font-weight: 700;
+    color: rgb(51,51,51);
+}
+
+.input-div{
+ 
+    margin-top: 5px;
+}
+
+.input-div > input{
+    width: 90%;
+    background-color: white;
+    border: 1px solid grey;
+    height: 7vh;
+}
+
+.refreal-div{
+    background-color:rgb(242,242,242) ;
+    margin-top: 20px;
+    height: 20vh;
+}
+
+.bottom-part{
+   
+    height: 40vh;
+    margin-top: 30px;
+}
+
+.bottom-title-div{
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+}
+
+.bottom-title{
+    margin-left: 30px;
+    font-weight: 700;
+    color: rgb(51,51,51);
+}
+.bottom-title-another{
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+}
+
+.bottom-title{
+    margin-left: 30px;
+    font-weight: 700;
+    color: rgb(51,51,51);
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.login-button{
+    
+    width: 90%;
+    margin-top: 50px;
+    height: 10vh;
+    background-color: rgb(34,34,34);
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.last-part{
+ 
+    margin-top: 10px;
+    width: 90%;
+    margin-left: 20px;
+    
+}
+
+.email-error{
+    border: 1px solid red;
+    height: 5vh;
+    
+}
+.email-error > h1{
+    font-size: 20px;
+    text-align: center;
+}
+
+.email-no-error{
+    border: 1px solid green;
+
+}
