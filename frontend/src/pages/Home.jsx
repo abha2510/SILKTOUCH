@@ -3,12 +3,13 @@ import React from 'react'
 import ProductSlider1 from './sliders/ProductSlider1'
 import ProductSlider2 from './sliders/ProductSlider2'
 import SliderImage from './sliders/Slider'
-import BrandSlider from "./sliders/BrandCard"
+import BrandSlider from "./sliders/BrandSlider"
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
     <div>
-      <Box mt={10}>
+      <Box>
         <SliderImage/>
       </Box>
 
@@ -96,11 +97,12 @@ const Home = () => {
     {/* -------------------------------------------From The Blog------------------------ */}
 
     <Text fontSize={35} mt={"14px"} mb="14px" align="center">From The Blog</Text>
-          <Box w={['100%', '100%', '65%']}>
+          <Box w={['100%', '100%', '100%']}>
             <BrandSlider/>
          </Box>
-    
-    </Box>
+
+          </Box>
+          <Footer/>
     </div>
   )
 }
