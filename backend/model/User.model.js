@@ -34,29 +34,6 @@ const userSchema = new mongoose.Schema({
     userId:{
          type:String
     },
-    cart:[
-        {
-            id: String,
-            logo: String,
-            name: String,
-            description: String,
-            image_1: String,
-            image_2: String,
-            image_3: String,
-            category: String,
-            rating: Number,
-            review: Number,
-            price: Number,
-            discounted: Number,
-            quantity: Number,
-            total_item_in_cart: Number,
-            likes: Number,
-            stocks: Number,
-            gender:String,
-            brand:String
-
-        }
-    ]
 },{
     versionKey : false
 })
