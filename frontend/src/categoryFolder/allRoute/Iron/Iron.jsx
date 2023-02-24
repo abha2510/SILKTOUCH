@@ -7,14 +7,8 @@ Modal, ModalContent,ModalBody,ModalCloseButton,ModalFooter,ModalHeader,Button,In
 import { Search2Icon} from '@chakra-ui/icons'
 import { FaCartArrowDown } from "react-icons/fa";
 import { AiFillStar,AiOutlineHeart,AiFillHeart } from "react-icons/ai"
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css"
-// import "slick-carousel/slick/slick-theme.css"
-// import Navbar from '../../../Saurabh/Navbar';
 import {getPostsIron,updatePosts} from '../../api/api.action';
 import { Link } from 'react-router-dom';
-// import Menubar from '../Menubar';
-// import { addtocart } from '../../../sanket/cart/redux/actions';
 
 
 export const Iron = () => {
@@ -62,45 +56,35 @@ export const Iron = () => {
         }
     ]
 
-    var settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      pauseOnHover: true
-    };
-
 // converting number of ratings into stars to show in ui
     let star=(n)=>{
       if(n>=0 && n <= 1.4){
-        <AiFillStar color="gold" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
       }else if(n>=1.5 && n <= 2.4){
          return<>
-         <AiFillStar color="gold" size="1.5rem" />
-         <AiFillStar color="gold" size="1.5rem" />
+         <AiFillStar color="black" size="1.5rem" />
+         <AiFillStar color="black" size="1.5rem" />
          </>
       }else if(n>=2.5 && n <= 3.4){
         return<>
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
         </>
       }else if(n>=3.5 && n <= 4.4){
         return<>
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
         </>
       }else{
         return<>
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
-        <AiFillStar color="gold" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
+        <AiFillStar color="black" size="1.5rem" />
         </>
       }
     }

@@ -15,6 +15,7 @@ export const getPosts=()=> async(dispatch)=>{
 
     try{
         let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
+        console.log(res)
         dispatch({type:API_GET_SUCCESS, payload : res.data.makeup})
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
@@ -31,7 +32,7 @@ export const getPostsIron=()=> async(dispatch)=>{
 
     try{
         let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
-        console.log(res.data.Iron)
+        console.log(res)
         dispatch({type:API_GET_SUCCESS, payload : res.data.Iron})
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
@@ -43,6 +44,7 @@ export const getPostsMobile=()=> async(dispatch)=>{
     try{
         let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
         dispatch({type:API_GET_SUCCESS, payload : res.data.mobiles})
+        console.log(res.data.mobiles)
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
     }
