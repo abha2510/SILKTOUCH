@@ -206,3 +206,17 @@
     
 }
 
+.email-error{
+    border: 1px solid red;
+    height: 5vh;
+    
+}
+.email-error > h1{
+    font-size: 20px;
+    text-align: center;
+}
+
+.email-no-error{
+    border: 1px solid green;
+
+}

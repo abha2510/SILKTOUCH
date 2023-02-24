@@ -16,13 +16,19 @@ const Register = () => {
    const [confirm_password,setConfirmpassword]=useState("")
    const [mobile,setMobile]=useState("")
     
+   const [emailempty,setEmailempty]=useState(false)
 
 
    const handleSubmit=()=>{
      const payload={
        name,email,confirm_email,password,confirm_password,mobile
      }
-
+   
+     if(email===""){
+      setEmailempty(true)
+     }else{
+      setEmailempty(false)
+     }
 
      fetch("https://prickly-beret-goat.cyclic.app/users/register",{
          method:"POST",
@@ -93,6 +99,9 @@ const Register = () => {
                       {/* input-2 */}
                        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
                      </div>
+                     {
+                      emailempty===true?<div className='email-error'><h1>Email feild is required Feild</h1></div>:<div className='email-no-error'></div>
+                     }
                      {/* 3rd input */}
                      <div className='input-title-div'>
                       <h1 className='input-title'>
