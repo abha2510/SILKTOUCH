@@ -1,27 +1,9 @@
 
 
-<<<<<<< HEAD
-
-cartRouter.patch("/addtocart", async (req, res) => {
-    const userID=req.body.userId;
-
-    const getdata = req.body;
-
-    const cartdata =await ProductModel.findOne(getdata);
-    console.log(cartdata)
-    const user=await UserModel.findOne({_id:userID})
-    user.cart.push(cartdata)
-  
-     await UserModel.findByIdAndUpdate({_id:userID},user)
-     res.send(user)  
-
-    
-});
-=======
 const express=require("express");
 const {CartModel}=require("../model/Cart.model");
 const cartRouter =express.Router();
->>>>>>> a30160925853e397ffd9f17bd59a1ce56ca56b98
+
 
 
 
@@ -70,11 +52,11 @@ cartRouter.patch("/update/inc/:id",async(req,res)=>{
         res.send({"msg":"Something went wrong","error":error})
     }
     })
-<<<<<<< HEAD
+
   
-     res.send(user) 
-});
-=======
+    
+
+
 
 
     cartRouter.patch("/update/dec/:id",async(req,res)=>{
@@ -115,14 +97,13 @@ cartRouter.patch("/update/inc/:id",async(req,res)=>{
         }
         })
     
->>>>>>> a30160925853e397ffd9f17bd59a1ce56ca56b98
+
 
 
 module.exports={cartRouter}
 
 
 
-<<<<<<< HEAD
 
 
 
@@ -130,5 +111,5 @@ module.exports={cartRouter}
 
 
 
-=======
->>>>>>> a30160925853e397ffd9f17bd59a1ce56ca56b98
+
+
