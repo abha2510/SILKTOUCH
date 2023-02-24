@@ -1,5 +1,6 @@
 import { Box, Button, Center, Flex, Heading, Image, Spacer } from '@chakra-ui/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Page = () => {
   return (
@@ -28,7 +29,9 @@ const Page = () => {
                        <Button>+</Button>
                     </Flex>
                 </Box>
+                <Link to="/cartpage">
                 <Button mt={8} >Add to cart</Button>
+                </Link>
             </Flex>
            <Box  mt={10}><hr/></Box>
         <Box border={"1px solid black"} textAlign={'center'}  w={"60%"} mt={5} >Up to 65% Savings on Best of Dermstore</Box>

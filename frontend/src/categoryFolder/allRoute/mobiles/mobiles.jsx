@@ -8,6 +8,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 import { AiFillStar, AiOutlineHeart, AiFillHeart,AiOutlineStar } from "react-icons/ai"
  import useCustom from '../../customs/custom';
+import { Link } from 'react-router-dom';
 
 const Mobiles = () => {
    let [posts,loading,datas,asc,desc,filter,filterBack,cart,loader,wishList,wish] = useCustom()
@@ -173,7 +174,9 @@ const Mobiles = () => {
                     <Text border="1px solid black" w="60%" m="auto">&#36;11 SkinCeuticals Gift</Text>
                     <Text><b>&#36; {el.price}</b></Text>
                     <Text style={{ display: "flex", marginLeft: "30%" }}>{el.rating ? star(el.rating) : star(0)}</Text>
+                   <Link to="/page">
                     <Button color="white" bg="black" w="100%" borderRadius={"0px"} _hover={{bg:"grey"}}>Add To Cart</Button>
+                    </Link>
                   </Box>
 
                   {/* adding to wish list */}
@@ -189,6 +192,7 @@ const Mobiles = () => {
                         <Button colorScheme='blue' mr={3} onClick={onClose}>
                           Close
                         </Button>
+                        
                         <Button variant='ghost' onClick={() => { wishList(el.id) }}>Add</Button>
                       </ModalFooter>
                     </ModalContent>
