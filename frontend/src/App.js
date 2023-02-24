@@ -1,10 +1,16 @@
 
+import { Iron } from "./categoryFolder/allRoute/Iron/Iron";
+import {Routes,Route} from "react-router-dom"
+// import NewUser from "./adminpages/newUser/NewUser";
+
+
 
 import "./App.css";
 import AllRoutes from "./AllRoutes/AllRoutes";
 
 import {Routes,Route} from "react-router-dom"
 import Home from "./pages/Home"
+
 import './App.css';
 import Checkout from "./pages/Checkout";
 
@@ -20,11 +26,16 @@ function App() {
      <Routes>
 
       <Route path="/checkout" element={<Checkout/>}></Route>
+
+      {/* <Route path="/register" element={<NewUser/>}></Route> */}
+        <Route path="/iron" element={<Iron/>}></Route>
+
        <Route path="/page" element={<Page/>}></Route>
         <Route path="/cartpage" element={<CartPage/>}></Route>
 
      <Route path="/" element={<Home/>}></Route>
      <Route path="/checkout" element={<Checkout/>}></Route>
+
 
      </Routes>
      {/* <Footer/> */}

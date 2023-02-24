@@ -28,11 +28,11 @@ const Footer = () => {
       <Box w="90%" m="auto">
         <Flex direction={["column", "column", "row"]} mt="25px" textAlign="left">
           <Box w={["100%", "100%", "50%"]} pb="25px">
-            <Heading mb="20px" fontSize="md">Sign up to our email list and receive 20% off your next order</Heading>
+            <Heading mb="16px" fontSize="md">Sign up to our email list and receive 16% off your next order</Heading>
             <Link to="/signup"><Button border="0px" bgColor="black" borderRadius="0px" _hover={{ bgColor: "#28bdb7", color: "white" }} color="white">SIGN UP</Button></Link>
           </Box>
           <Box w={["100%", "100%", "50%"]} pb="25px">
-            <Heading fontSize="md" mb="20px" >Connect with us</Heading>
+            <Heading fontSize="md" mb="16px" >Connect with us</Heading>
             <Flex>
               {socialLinks.map((s) => <Image mr="10px" as="img" w="35px" src={s} />)}
             </Flex>
@@ -43,11 +43,11 @@ const Footer = () => {
         <Flex justify="space-between" direction={["column", "column", "row"]}>
           <Box textAlign="left" w={["100%", "100%", "48%"]} borderTop="1px solid black" pt="15px">
             <Heading size="sm" mb="25px">Customer Service</Heading>
-            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="20px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<MdInfo />}>Help Center / FAQs</Button>
-            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="20px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<GiReturnArrow />}>Returns</Button>
-            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="20px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<FaTruck />}>Shipping Information</Button>
-            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="20px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<CgTrack />}>Track my Order</Button>
-            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="20px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<FaCookie/>}>Cookie Settings</Button>
+            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="16px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<MdInfo />}>Help Center / FAQs</Button>
+            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="16px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<GiReturnArrow />}>Returns</Button>
+            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="16px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<FaTruck />}>Shipping Information</Button>
+            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="16px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<CgTrack />}>Track my Order</Button>
+            <Button border={["1px solid gainsboro", "0px"]} textAlign="left" fontSize="16px" display="block" w={["100%", "100%", "50%"]} mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} leftIcon={<FaCookie/>}>Cookie Settings</Button>
           </Box>
           <Flex display={["block", "block", "none"]}>
             <Accordion allowToggle>
@@ -61,7 +61,7 @@ const Footer = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  {about.map((a) => <Button fontSize="20px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{a}</Button>)}
+                  {about.map((a) => <Button fontSize="16px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{a}</Button>)}
 
                 </AccordionPanel>
               </AccordionItem>
@@ -77,7 +77,7 @@ const Footer = () => {
                 </h2>
                 <AccordionPanel pb={4}>
 
-                  {legal.map((l) => <Button fontSize="20px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{l}</Button>)}
+                  {legal.map((l) => <Button fontSize="16px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{l}</Button>)}
 
                 </AccordionPanel>
               </AccordionItem>
@@ -91,8 +91,8 @@ const Footer = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  <Button fontSize="20px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Message Us</Button>
-                  <Button fontSize="20px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Free Beauty Consultations</Button>
+                  <Button fontSize="16px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Message Us</Button>
+                  <Button fontSize="16px" textAlign="left" display="block" w="100%" borderBottom="1px solid gainsboro" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Free Beauty Consultations</Button>
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
@@ -101,16 +101,16 @@ const Footer = () => {
           <Flex display={["none", "none", "flex"]} justify="space-between" textAlign="left" w={["100%", "48%"]}>
             <Box w="30%" borderTop="1px solid black">
               <Heading size="sm" ml="14px" mt="15px" mb="25px">About SkinStore</Heading>
-              {about.map((a) => <Button key={a} fontSize="20px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{a}</Button>)}
+              {about.map((a) => <Button key={a} fontSize="16px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{a}</Button>)}
             </Box>
             <Box w="30%" borderTop="1px solid black">
               <Heading size="sm" ml="14px" mt="15px" mb="25px">Legal</Heading>
-              {legal.map((l) => <Button key={l} fontSize="20px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{l}</Button>)}
+              {legal.map((l) => <Button key={l} fontSize="16px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >{l}</Button>)}
             </Box>
             <Box w="30%" borderTop="1px solid black">
               <Heading size="sm" ml="14px" mt="15px" mb="25px">How To Contact Us</Heading>
-              <Button fontSize="20px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Message Us</Button>
-              <Button fontSize="20px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Free Beauty Consultations</Button>
+              <Button fontSize="16px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Message Us</Button>
+              <Button fontSize="16px" textAlign="left" display="block" w="100%" mb="10px" borderRadius="0px" bgColor="white" _hover={{ bgColor: "gainsboro" }} >Free Beauty Consultations</Button>
             </Box>
           </Flex>
 
@@ -120,7 +120,7 @@ const Footer = () => {
         <Flex textAlign="left" w={["95%", "95%", "90%"]} m="auto" direction={["column-reverse", "column-reverse", "row"]} >
           <Box w={["100%", "100%", "50%"]}>
             <Heading size="lg">THG</Heading>
-            <Text>2023 © The Hut.com Ltd.</Text>
+            <Text>1623 © The Hut.com Ltd.</Text>
           </Box>
           <Box w={["100%", "100%", "50%"]}>
             <Heading size="sm" mb="25px" >Pay securely with</Heading>
