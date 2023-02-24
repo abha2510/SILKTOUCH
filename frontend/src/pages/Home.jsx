@@ -1,14 +1,65 @@
-import {Box, Flex, Image, Link, Stack, Text } from '@chakra-ui/react'
+import {Box, Center, Flex, Image, Link, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import ProductSlider1 from './sliders/ProductSlider1'
 import ProductSlider2 from './sliders/ProductSlider2'
 import SliderImage from './sliders/Slider'
 import BrandSlider from "./sliders/BrandSlider"
 import Footer from '../components/Footer'
+import { FaShippingFast} from "react-icons/fa";
+import { RiBattery2ChargeFill, RiCoinsFill } from "react-icons/ri";
+import { MdOutlineSmartphone } from "react-icons/md";
+import {FiClock,FiCheck} from "react-icons/fi"
+import Navbar from '../components/Navbar'
 
 const Home = () => {
   return (
     <div>
+      <Navbar/>
+       <Box bgColor="#f2f2f2" alignItems="center" id="bottom_nav">
+        <Box mt={106}
+          alignItems="center"
+          display="flex"
+          py={5}
+          pl={20}
+          pr={20}
+          fontSize="14px"
+          justifyContent="space-evenly"
+        >
+          <Box display="flex" alignItems="center" gap="10px">
+            <FaShippingFast size="1.5em" />
+            <p>FREE US Sheeping Over $49</p>
+          </Box>
+
+          <Box display="flex" alignItems="center" gap="10px">
+            <RiCoinsFill size="1.5em" />
+            <p> Refer a Friend, Get $15</p>
+          </Box>
+
+          <Box display="flex" alignItems="center" gap="10px">
+            <RiBattery2ChargeFill size="1.5em" />
+            <p>Dermstore Rewards</p>
+          </Box>
+
+          <Box display="flex" alignItems="center" gap="10px">
+            <FiClock size="1.5em" />
+            <p>Ask To Esthetician</p>
+          </Box>
+
+          <Box display="flex" alignItems="center" gap="10px">
+            <MdOutlineSmartphone size="1.5em" />
+            <p>Download Our App</p>
+          </Box>
+
+          <Box display="flex" alignItems="center" gap="10px">
+            <FiCheck size="1.5em" />
+            <p>Refer a Friend,Get$51</p>
+          </Box>
+        </Box>
+      </Box>
+      <Box h={"60px"} w={"100%"} p={0} m={0} border={"1px solid #CCCCCC"} bgColor={"#CCCCCC"}>
+      <Text mt={3}>Discover all the latest skin, hair and beauty mush-haves. SHOP NEW ARRIVALS</Text>
+      </Box>
+{/* ------------------------------------------------------ */}
       <Box>
         <SliderImage/>
       </Box>
@@ -83,20 +134,35 @@ const Home = () => {
 
     {/* --------------------------------------------Feature Brands--------------------------- */}
     
-
-    <Box mt={8} >
-    <Text fontSize={28} mt={16} mb={14} align="center">Feature Brand</Text>
-    <Box display={['grid', 'grid', 'flex']} justifyContent={"space-between"} gap={8}>
-      <Image h={150} w={280} src="https://static.thcdn.com/images/small/webp/widgets/208-us/34/original-220322-ELTAMD-LOGO-RGB-01_%28002%29-014534.png"/>
-      <Image h={150} w={280} src="https://static.thcdn.com/images/small/webp/widgets/208-us/26/original-MicrosoftTeams-image_%283%29-032926.png"/>
-      <Image h={150} w={280} src="https://static.thcdn.com/images/small/webp/widgets/208-us/08/SkinMedica-014608.jpg"/>
-      <Image h={150} w={280} src="https://static.thcdn.com/images/small/webp/widgets/208-us/21/augustinusbader-124221.gif"/>
+    <Text fontSize={28} mt={16} mb={"14px"} align="center">Feature Brand</Text>
+    <Box mt={12}>
+        <Center>
+          <Box display={['grid', 'grid', 'flex']} gap={8} justifyContent='center' gridTemplateColumns={'1fr 1fr'}>
+            <Link to="/skin">
+              <Image w={205} src='https://static.thcdn.com/images/small/webp/widgets/121-us/26/180x72_4_233548301_CA_SS_Logo_Amend_BAU_THG0030424-041301-124116-063126.png' alt="cat-1" />
+            </Link>
+            <Link to="/skin">
+              <Image w={205} src="https://static.thcdn.com/images/small/webp/widgets/121-us/18/original-logo-1024x383-035229-063318.png" alt="cat-2" />
+            </Link>
+            <Link to="/skin">
+              <Image w={205} src="https://static.thcdn.com/images/small/webp/widgets/121-us/11/Revision_Skincare_Logo_without_Tag_Line-052511.png" alt="cat-3" />
+            </Link>
+            <Link to="/skin">
+              <Image w={205} src="https://static.thcdn.com/images/small/webp/widgets/121-us/46/original-NF_Skinstore_Banner_Logo_Color_320x140-01-011402-010546.png" alt="cat-4" />
+            </Link>
+            <Link to="/skin">
+              <Image w={190} src="https://static.thcdn.com/images/small/webp/widgets/121-us/27/220322-ELTAMD-LOGO-RGB-01-065127.png" alt="cat-5" />
+            </Link>
+            <Link to="/skin">
+              <Image w={205} src="https://static.thcdn.com/images/small/webp/widgets/121-us/07/original-LOGO-2022_SkinStore_Landing_Page-BLACK-060107.png" alt="cat-6" />
+            </Link>
+          </Box>
+        </Center>
       </Box>
-    </Box>
 
     {/* -------------------------------------------From The Blog------------------------ */}
 
-    <Text fontSize={35} mt={"14px"} mb="14px" align="center">From The Blog</Text>
+    <Text fontSize={28} mt={"20px"} align="center">From The Blog</Text>
           <Box w={['100%', '100%', '100%']}>
             <BrandSlider/>
          </Box>
