@@ -1,5 +1,5 @@
 
-import {Alert, AlertIcon, Box,Center,Checkbox,Flex,FormLabel,Heading,Image, Input, InputGroup, InputLeftElement, Select} from "@chakra-ui/react"
+import {Alert, AlertIcon, Box,Center,Checkbox,Flex,FormLabel,Image, Input, InputGroup, InputLeftElement, Select} from "@chakra-ui/react"
 import logo from "../assets/nbg.png";
 import React from 'react';
 import { Stack, Text, Button } from '@chakra-ui/react';

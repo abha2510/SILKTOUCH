@@ -1,6 +1,15 @@
 .user {
     flex: 4;
     padding: 20px;
+    background-color: white;
+    color: black;
+    
+  }
+
+  .usercontainer{
+    background-color: white;
+    height: 100vh;
+    color: black;
   }
   
   .userTitleContainer {
@@ -118,6 +127,12 @@
       width: 250px;
       height: 30px;
       border-bottom: 1px solid gray;
+      background-color: white;
+      
+  }
+  .userUpdateInput::placeholder{
+    color: black;
+    
   }
   
   .userUpdateRight{
