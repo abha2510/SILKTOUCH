@@ -2,11 +2,17 @@
     flex: 4;
     padding: 20px;
   }
+  .productContainer{
+    background-color: white;
+    color: black;
+    height: 100vh;
+  }
   
   .productTitleContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: black;
   }
   
   .productAddButton {
@@ -17,11 +23,13 @@
     color: white;
     border-radius: 5px;
     font-size: 16px;
+    color: black;
     cursor: pointer;
   }
   
   .productTop {
     display: flex;
+    color: black;
   }
   
   .productTopLeft,
@@ -34,6 +42,7 @@
     margin: 20px;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    color: black;
   }
   
   .productInfoImg {
@@ -42,6 +51,7 @@
     border-radius: 50%;
     object-fit: cover;
     margin-right: 20px;
+    color: black;
   }
   
   .productInfoTop {
@@ -77,11 +87,21 @@
   .productForm {
     display: flex;
     justify-content: space-between;
+    color: black;
   }
   
   .productFormLeft {
     display: flex;
     flex-direction: column;
+    color: black;
+  }
+
+  .productFormLeft > input{
+    background-color: white;
+    
+  }
+  .productFormLeft>input::placeholder{
+    color: black;
   }
   
   .productFormLeft > label {
@@ -94,10 +114,12 @@
     border: none;
     padding: 5px;
     border-bottom: 1px solid gray;
+    color: black;
   }
   
   .productFormLeft >select{
     margin-bottom: 10px;
+    color: black;
   }
   
   .productUploadImg{
@@ -106,16 +128,19 @@
     border-radius: 10px;
     object-fit: cover;
     margin-right: 20px;
+    color: black;
   }
   
   .productFormRight{
     display: flex;
     flex-direction: column;
+    color: black;
     justify-content: space-around;
   }
   
   .productUpload{
     display: flex;
+    color: black;
     align-items: center;
   }
   
@@ -128,4 +153,13 @@
     font-weight: 600;
     cursor: pointer;
   }
+
+  #idStock{
+    color: black;
+    background-color: white;
+  }
   
+  #active{
+    color: black;
+    background-color: white;
+  }

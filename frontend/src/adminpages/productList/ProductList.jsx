@@ -1,13 +1,15 @@
 import "./productList.css";
-import { DataGrid } from "@material-ui/data-grid";
+// import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
+import { DataGrid } from '@material-ui/data-grid';
+
 import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function ProductList() {
   const [data, setData] = useState(productRows);
-
+ console.log(data)
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -59,14 +61,17 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
+    <div className="productListcontainer">
+
+    <div className="productList" style={{ height: "100vh", width: '100%' }}>
       <DataGrid
         rows={data}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
-      />
+        />
     </div>
+        </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   
   export default function User() {
     return (
+      <div className="usercontainer">
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
@@ -118,6 +119,7 @@ import {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }
