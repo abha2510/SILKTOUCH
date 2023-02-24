@@ -7,7 +7,13 @@ const {authenticate}=require("./middleware/authenticate.middleware")
 const {cartRouter}=require("./routes/Cart.router");
 const {cors} = require("cors")
 const app=express();
+<<<<<<< HEAD
+const cors=require("cors")
+app.use(cors())
+
+=======
 app.use(cors());
+>>>>>>> a30160925853e397ffd9f17bd59a1ce56ca56b98
 app.use(express.json());
 
 app.use("/users",userRouter);

@@ -1,10 +1,14 @@
 .userList {
     flex: 4;
+    color: white;
+    background-color: white;
+  
   }
   
   .userListUser {
     display: flex;
     align-items: center;
+    
   }
   
   .userListImg {

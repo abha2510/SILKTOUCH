@@ -1,5 +1,9 @@
 .newProduct {
     flex: 4;
+    background-color: white;
+    color: black;
+    height: 100vh;
+    justify-content: center;
   }
   
   .addProductForm {
@@ -21,6 +25,10 @@
   
   .addProductItem > input {
     padding: 10px;
+    background-color: white;
+  }
+  .addProductItem>input::placeholder{
+    color: black;
   }
   
   .addProductItem > select {
