@@ -6,14 +6,14 @@ import { Card, CardBody,Heading,Box,Checkbox,Text ,Image,Skeleton, Stack,CloseBu
   Modal, ModalContent,ModalBody,ModalCloseButton,ModalFooter,ModalHeader,Button,Input,useToast} from '@chakra-ui/react'
 import { Search2Icon ,ChevronDownIcon} from '@chakra-ui/icons'
 import { AiFillStar,AiOutlineHeart ,AiFillHeart} from "react-icons/ai"
-import { FaCartArrowDown } from "react-icons/fa";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Navbar from '../../../Saurabh/Navbar';
-import { Link } from 'react-router-dom';
-import {getPostsJuicers,updatePosts} from '../../api/api.action';
-import Menubar from '../Menubar';
+ import { FaCartArrowDown } from "react-icons/fa";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css"
+// import "slick-carousel/slick/slick-theme.css"
+// import Navbar from '../../../Saurabh/Navbar';
+ import { Link } from 'react-router-dom';
+ import {getPostsJuicers,updatePosts} from '../../api/api.action';
+// import Menubar from '../Menubar';
 
 
 export const Juicers = () => {
@@ -176,10 +176,10 @@ export const Juicers = () => {
 
   return (
     <>
-   <Navbar/>
-   <Menubar/>
+   {/* <Navbar/>
+   <Menubar/> */}
     {/* ui slider part */}
-    <Slider {...settings}>
+    {/* <Slider {...settings}>
         {
             data.map((item)=>(
               <div key={item.id}>
@@ -189,7 +189,7 @@ export const Juicers = () => {
             ))
         }
     </Slider>
-    
+     */}
     <div style={{display:"flex"}}>   
     {/* ui left part */}
     <Box className="m-left"> 
@@ -271,7 +271,7 @@ export const Juicers = () => {
     <Box className="details">
     {datas.map((post) => (
       <Card key={post.id}  bg={'whiteAlpha.900'}>
-       <Image src={post.img} alt={post.price}className="image"/>
+       <Image src={post.url} alt={post.price}className="image"/>
        <Box style={{height:'40%'}}>
            <Text style={{height:"40%", overflow:"hidden",textOverflow: "ellipsis"}}>{post.desc}</Text>
            <Text>&#8377; {post.price}</Text>
