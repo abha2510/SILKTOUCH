@@ -35,10 +35,11 @@
 }
 .details{
    display:grid;
-   grid-template-columns: repeat(4,1fr);
+   grid-template-columns: repeat(3,1fr);
    gap:1rem;
    margin-top: 1rem;
-   padding:0.5rem
+   padding:0.5rem;
+   color:black
 }
 .wishList{
     width:50%;
@@ -63,8 +64,8 @@
     cursor:pointer
 }
 .details>*:hover{
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    color:red;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    color:black
 }
 .image{
     height:50%; 
@@ -92,6 +93,8 @@
 @media screen and (max-width: 992px) {
     .details{
         grid-template-columns: repeat(2,1fr);
+        transform: scale(0.8);
+        margin-top: -60vh;
     }
     .wishList{
         transform:scale(0.8)
@@ -100,6 +103,8 @@
   @media screen and (max-width: 666px) {
     .details{
         grid-template-columns: repeat(1,1fr);
+        transform: scale(0.8);
+        margin-top: -120vh;
     }
     .wishList{
         transform:scale(0.8)
