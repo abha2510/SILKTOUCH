@@ -16,7 +16,7 @@ const Home = () => {
     <div>
  
        <Box bgColor="#f2f2f2" alignItems="center" id="bottom_nav">
-        <Box mt={106}
+        <Box mt={97}
           alignItems="center"
           display="flex"
           py={5}

@@ -90,9 +90,9 @@ const Mobiles = () => {
   return (
     <>
      <br/><br/>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex" ,marginTop:"80px"}}>
         {/* ui left part */}
-        <Box className="m-left">
+        <Box className="m-left"> 
 
           {/* filter   feading    */}
           <Card className='filter' bg={'whiteAlpha.900'} w={[100, 150, 200, 300]}>
