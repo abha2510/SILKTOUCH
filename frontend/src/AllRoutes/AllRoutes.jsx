@@ -16,7 +16,6 @@ import Page from '../pages/Page';
 import CartPage from "../pages/CartPage";
 import Mobiles from "../categoryFolder/allRoute/mobiles/mobiles"
 
-
 const AllRoutes = () => {
   return (
      <>

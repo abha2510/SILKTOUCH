@@ -6,7 +6,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 
 
-
 const Register = () => {
 
    const [name,setName]=useState("")

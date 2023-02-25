@@ -1,12 +1,20 @@
-
-import {Alert, AlertIcon, Box,Center,Checkbox,Flex,FormLabel,Image, Input, InputGroup, InputLeftElement, Select} from "@chakra-ui/react"
+import {Alert, AlertIcon, Box,Center,
+  Checkbox,Flex,FormControl,FormErrorMessage,
+  FormHelperText,FormLabel,Image, Input,
+  InputGroup, InputLeftElement, Select} from "@chakra-ui/react"
 import logo from "../assets/nbg.png";
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, Text, Button } from '@chakra-ui/react';
 import {MdHome,MdLocationOn} from "react-icons/md";
 import {SearchIcon} from "@chakra-ui/icons"
 
 const Checkout = () => {
+  const [input, setInput] = useState('')
+
+  const handleInputChange = (e) => setInput(e.target.value)
+
+  const isError = input === ''
+
   return (
     <div>
       <Box border={"1px solid black"} height={90} width={"100%"}>
@@ -44,22 +52,51 @@ const Checkout = () => {
         <Text fontSize={{ base: 'sm' }} textAlign={'left'} maxW={'4xl'} fontFamily={"Raleway, Helvetica, Arial, sans-serif"}>
         Complete your order without signing up, or sign up after payment. 
         </Text>
-
+        
         <Text textAlign={"left"}>1. Email and delivery address</Text>
+        <FormControl isInvalid={isError}>
         <FormLabel>*Email address</FormLabel>
-        <Input h="38px" border="1px solid black" mb="30px" isRequired name="email" type='email' placeholder="Enter email" />
-        <Text textAlign={"left"} fontSize={"small"}>We'll send the purchase receipt to this email.</Text>
+        <Input type='email' value={input} onChange={handleInputChange} h="38px" border="1px solid black" mb="30px" isRequired name="email" placeholder="Enter email" />
+        {!isError ? (
+        <FormHelperText textAlign={"left"} mt={-7}>
+          We'll send the purchase receipt to this email.
+        </FormHelperText>
+      ) : (
+        <FormErrorMessage textAlign={"left"} mt={-6}>Email is required.</FormErrorMessage>
+      )}
+        
+        </FormControl>
+
       <Stack direction={{ base: 'column', md: 'row' }}>
        <Button _hover={{border:"1px solid black"}}><MdHome/>Delivery</Button>
        <Button _hover={{border:"1px solid black"}}><MdLocationOn/>Click & Collect</Button>
       </Stack>
+      <FormControl isInvalid={isError}>
       <FormLabel>*Country/Region</FormLabel>
-      <Select placeholder='Select option' border={"1px solid black"}>
+      <Select placeholder='Select option' border={"1px solid black"} onChange={handleInputChange}>
        <option value='option2'>Canada</option>
        <option value='option3'>United State</option>
     </Select>
+    {!isError ? (
+        <FormHelperText textAlign={"left"} >
+         {" "}
+        </FormHelperText>
+      ) : (
+        <FormErrorMessage textAlign={"left"} >Country Name is required.</FormErrorMessage>
+      )}
+    </FormControl>
+
+    <FormControl isInvalid={isError}>
     <FormLabel>*Full Name</FormLabel>
-     <Input h="38px" border="1px solid black" mb="30px" isRequired name="email" type='email' placeholder="Enter your Full Name" />
+     <Input h="38px" onChange={handleInputChange} border="1px solid black" mb="30px" isRequired name="full name" type='full name' placeholder="Enter your Full Name" />
+     {!isError ? (
+        <FormHelperText textAlign={"left"} mt={-6}>
+        {" "}
+        </FormHelperText>
+      ) : (
+        <FormErrorMessage textAlign={"left"} mt={-6}>Full name is required.</FormErrorMessage>
+      )}
+     </FormControl>
      <FormLabel>Address Search</FormLabel>
      <InputGroup border="1px solid gray">
     <InputLeftElement
@@ -100,12 +137,33 @@ const Checkout = () => {
                 <Image w={'10%'} src='https://s1.thcdn.com/checkout/resources/images/8ba3dc816042268141a2205e3bfc3971.svg' alt='2' />
                 <Image w={'10%'} src='https://s1.thcdn.com/checkout/resources/images/248074ffdeeeaeffed9c5db35f35fe45.svg' alt='2' />
               </Flex>
+              <FormControl isInvalid={isError}>
+                
               <Text fontSize={'15'} textAlign='left' mt={7} >* Card Number</Text>
-              <Input placeholder='Enter Card Number' mt={'2'} ></Input>
+              <Input placeholder='Enter Card Number' mt={'2'} onChange={handleInputChange}></Input>
+              {!isError ? (
+                   <FormHelperText textAlign={"left"}>
+                         {" "}
+                   </FormHelperText>
+                     ) : (
+                   <FormErrorMessage textAlign={"left"} >Enter Card Number</FormErrorMessage>
+                    )}
+             </FormControl>
+             <FormControl isInvalid={isError}>
               <Text fontSize={'15'} textAlign='left' mt={7} >* Name on card</Text>
-              <Input placeholder='Enter Name on card' mt={'2'} ></Input>
+              <Input placeholder='Enter Name on card' mt={'2'} onChange={handleInputChange}></Input>
+              {!isError ? (
+                   <FormHelperText textAlign={"left"}>
+                         {" "}
+                   </FormHelperText>
+                     ) : (
+                   <FormErrorMessage textAlign={"left"} >Enter Name on Card</FormErrorMessage>
+                    )}
+              </FormControl>
+              
+              <FormControl isInvalid={isError}>
               <Text fontSize={'15'} textAlign='left' mt={7} >* Expiry Date</Text>
-
+              
               <Flex justify={'space-between'} >
                 <Select placeholder='Month'>
                   <option>Jan</option>
@@ -143,12 +201,30 @@ const Checkout = () => {
                   <option>40</option>
                 </Select>
               </Flex>
+              {!isError ? (
+                   <FormHelperText textAlign={"left"}>
+                         {" "}
+                   </FormHelperText>
+                     ) : (
+                   <FormErrorMessage textAlign={"left"} >Enter Expiry </FormErrorMessage>
+                    )}
+              </FormControl>
+
+              <FormControl isInvalid={isError}>
               <Text fontSize={'15'} textAlign='left' mt={7} >* Security Code (CV2)</Text>
-              <Input placeholder='Enter CVV' mt={'2'}  ></Input>
+              <Input placeholder='Enter CVV' mt={'2'} onChange={handleInputChange} ></Input>
+              {!isError ? (
+                   <FormHelperText textAlign={"left"}>
+                         {" "}
+                   </FormHelperText>
+                     ) : (
+                   <FormErrorMessage textAlign={"left"} >Enter CVV </FormErrorMessage>
+                    )}
+              </FormControl>
               <Checkbox defaultChecked float={"left"} mt={5}>Use my shipping address as my cardholder address</Checkbox>
             </Box>
           </Center>
-
+         
 
       </Stack>
      </Stack>

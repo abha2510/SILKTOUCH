@@ -12,15 +12,17 @@ import {
   Image,
   Input,
   InputGroup,
+  InputLeftElement,
   InputRightElement,
+  Stack,
   Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/nbg.png";
 import "../css/Navbar.css";
-import { Search2Icon } from "@chakra-ui/icons";
+import { Search2Icon, SearchIcon } from "@chakra-ui/icons";
 import { VscAccount } from "react-icons/vsc";
 import { FaShippingFast, FaShoppingCart } from "react-icons/fa";
 import { RiBattery2ChargeFill, RiCoinsFill } from "react-icons/ri";
@@ -34,9 +36,24 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons'
 import { userLogin, userLogout } from '../Redux/auth.action'
+import {HiHome} from "react-icons/hi"
+import {MdKeyboardArrowRight} from "react-icons/md";
+const data =require("./seach.json")
+
 const Navbar = () => {
+  const [value, setValue] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch()
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const onSearch = (searchTerm) => {
+    setValue(searchTerm);
+    // our api to fetch the search result
+    console.log("search ", searchTerm);
+  };
+
   // const cartItems = useSelector((state) => state.cartManager.products);
   // const username = useSelector((state) => state.authManager.userdata.username);
   // const isAuth = useSelector((state) => state.authManager.isAuth)
@@ -131,23 +148,100 @@ const Navbar = () => {
 
           </Box>
 
-          <div id="search-bar" style={{marginTop:"-30px"}}>
-            <InputGroup>
-              <Input placeholder="Search for a Product or a Brand" />
-              <InputRightElement children={<Search2Icon color="gray.500" />} />
-            </InputGroup>
-          </div>
+              <Flex>
+              <Stack
+                spacing={3}
+                w={["200px", "300px", "400px"]}
+                ml={["15%", "15%", "10%"]}
+                // mt={"99px"}
+              >
+                <Box position={"absolute"} marginTop={"-35px"} >
+                  <InputGroup width={"120%"} ml={"-20px"}>
+                    <InputLeftElement
+                      p={6}
+                      pointerEvents="none"
+                      children={
+                        <SearchIcon
+                          color="gray.500"
+                          ml={"8px"}
+                          fontSize={15}
+                          
+                        />
+                      }
+                    />
 
-          <div style={{ display: "flex", gap: "50px" ,marginTop:"-30px"}}>
+                    <Input
+                      value={value}
+                      onChange={onChange}
+                      type="text"
+                      placeholder="Search for a Product or a Brand"
+                      width={["50%", "50%", "100%"]}
+                      h={["25px", "30px", "45px"]}
+                      color={"black"}
+                      borderWidth="1px"
+                      fontSize={["8px", "8x", "15px"]}
+                      boxShadow={
+                        "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+                      }
+                    />
+
+                  </InputGroup>
+
+                  {/* -------------------------- search dropdown--------------------------------------------------------- */}
+
+                  <Box
+                    zIndex={99}
+                    position="relative"
+                    className="dropdown"
+                    // boxShadow={
+                    //   "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+                    // }
+                    fontSize={"14px"}>
+                    {data
+                      .filter((item) => {
+                        const searchTerm = value.toLowerCase();
+                        const fullName = item.name.toLowerCase();
+
+                        return (
+                          searchTerm &&
+                          fullName.startsWith(searchTerm) &&
+                          fullName !== searchTerm
+                        );
+                      })
+                      .slice(0, 10)
+                      .map((item) => (
+                        <Link to={item.href}>
+                          <Flex>
+                            <SearchIcon
+                              color="gray.500"
+                              mt={"20px"}
+                              ml={"10px"}
+                              fontSize={15}
+                            />
+                            <Box
+                              padding={4}
+                              onClick={() => onSearch(item.name)}
+                              key={item.name}>
+                              {item.name}
+                            </Box>
+                          </Flex>
+                        </Link>
+                      ))}
+                  </Box>
+                </Box>
+              </Stack>
+            </Flex>
+
+          <div style={{ display: "flex", gap: "50px" ,width:"150px",marginTop:"-30px"}} >
             <div id="dropdown-account">
               <div >
                 <Link to="/register" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <VscAccount size="1.6em" />
+                  <VscAccount size="1.6em" />Account
                   {/* <Text>{isAuth ? username : "Account"}</Text> */}
                 </Link>
               </div>
               <div id="dropdown-account-content">
-              <Button onClick={handleLogOut}
+              {/* <Button onClick={handleLogOut}
                   colorScheme="none"
                   w="full"
                   bgColor="black"
@@ -161,7 +255,13 @@ const Navbar = () => {
                 borderRadius={0}
               >
                 LOGIN
-              </Button></Link>
+              </Button></Link> */}
+
+              <Button
+              colorScheme="none"
+              w="full"
+              bgColor="black"
+              borderRadius={0}>LOGIN</Button>
               
                 <Link to="/signup">
                   <Button
@@ -186,8 +286,9 @@ const Navbar = () => {
                     fontSize: "16px",
                   }}
                 >
-                  <p>Wishlist</p>
+                  <p>My Favorites</p>
                   <p>Your Orders</p>
+                  <p>Your Auto-Replenishments</p>
                   <p>Your Referrels</p>
                 </div>
               </div>
@@ -233,7 +334,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Populer Categories
+                      Brands
                     </p>
                     <div
                       style={{
@@ -243,12 +344,16 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=''><p>Show All Products by Beuty Gift</p></Link>
-                      <Link to=''><p>Our Favorite Beuty Gift Sets</p></Link>
-                      <Link to=''><p>Skinstore Exclusive Gifts</p></Link>
-                      <Link to=''><p>SkinStore's Holiday Edit Box</p></Link>
-                      <Link to=''><p>Holiday Gift Ideas for Her</p></Link>
-                      <Link to=''><p>Holiday Gift Ideas for Him</p></Link>
+                      <Link to=''><p>SkinCeuticals</p></Link>
+                      <Link to=''><p>EltaMD</p></Link>
+                      <Link to=''><p>SkinMedica</p></Link>
+                      <Link to=''><p>Obagi</p></Link>
+                      <Link to=''><p>iS Clinical</p></Link>
+                      <Link to=''><p>Eminence Organic SkinCare</p></Link>
+                      <Link to=''><p>Neocutis</p></Link>
+                      <Link to=''><p>Oribe</p></Link>
+                      <Link to=''><p>Sunday Riley</p></Link>
+                      <Link to=''><p>PCA SKIN</p></Link>
                     </div>
                   </div>
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
@@ -261,7 +366,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      By Gift Idea
+                      Corcern
                     </p>
                     <div
                       style={{
@@ -271,39 +376,18 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=''><p>Budget Friendly and Small Gifts</p></Link>
-                      <Link to=''><p>Stocking Stuffer Ideas</p></Link>
-                      <Link to=''><p>Thoughtful Gifts for Smart Splurges</p></Link>
-                      <Link to=''><p>Luxury Holiday Gifts</p></Link>
-                      <Link to=''><p> Last Minute Gift Ideas</p></Link>
-                      <Link to=''><p>Gifts For You</p></Link>
-                    </div>
-                  </div>
-
-                  <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
-                    <p
-                      style={{
-                        paddingTop: "15px",
-                        textAlign: "left",
-                        borderTop: "1px solid gray",
-                        fontWeight: "bold",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      By Price
-                    </p>
-                    <div
-                      style={{
-                        textAlign: "left",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "10px",
-                      }}
-                    >
-                      <Link to=''><p>Gifts Under $25</p></Link>
-                      <Link to=''><p>Gifts Under $50</p></Link>
-                      <Link to=''><p>Gifts Under $100</p></Link>
-                      <Link to=''><p>Gifts Over $100</p></Link>
+                      <Link to=''><p>Acne</p></Link>
+                      <Link to=''><p>Acene Scars</p></Link>
+                      <Link to=''><p>Aging Skin</p></Link>
+                      <Link to=''><p>Blackheads</p></Link>
+                      <Link to=''><p>Dark Circles</p></Link>
+                      <Link to=''><p>Dark Spots</p></Link>
+                      <Link to=''><p>Rosacea</p></Link>
+                      <Link to=''><p>Oil Control</p></Link>
+                      <Link to=''><p>Irritated Skin</p></Link>
+                      <Link to=''><p>Large Pores</p></Link>
+                      <Link to=''><p>Strech Marks</p></Link>
+                      <Link to=''><p>Wrinkles</p></Link>
                     </div>
                   </div>
 
@@ -317,7 +401,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      By Category
+                      Skin Type
                     </p>
                     <div
                       style={{
@@ -327,12 +411,46 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=''><p>Skin Care Gifts</p></Link>
-                      <Link to=''><p>Body Care Gifts</p></Link>
-                      <Link to=''><p>Home Scents and Candle Gifts</p></Link>
-                      <Link to=''><p>Makeup Gifts</p></Link>
-                      <Link to=''><p>Hair Care Gifts</p></Link>
-                      <Link to=''><p>Beauty Tools and Hair Styling Gifts</p></Link>
+                      <Link to=''><p>Acne-Prones skin</p></Link>
+                      <Link to=''><p>Sensitive Skin</p></Link>
+                      <Link to=''><p>Dry Skin</p></Link>
+                      <Link to=''><p>Mature Skin</p></Link>
+                      <Link to=''><p>Combination Skin</p></Link>
+                      <Link to=''><p>Oily Skin</p></Link>
+                      <Link to=''><p>Normal Skin</p></Link>
+                    </div>
+                  </div>
+
+                  <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
+                    <p
+                      style={{
+                        paddingTop: "15px",
+                        textAlign: "left",
+                        borderTop: "1px solid gray",
+                        fontWeight: "bold",
+                        marginBottom: "20px",
+                      }}
+                    >
+                     Ingredient 
+                    </p>
+                    <div
+                      style={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      }}
+                    >
+                      <Link to=''><p>Vitamin C</p></Link>
+                      <Link to=''><p>Hyaluronic Acid</p></Link>
+                      <Link to=''><p>Retinol</p></Link>
+                      <Link to=''><p>Antioxidants</p></Link>
+                      <Link to=''><p>Zinc Oxide</p></Link>
+                      <Link to=''><p>Niacinamide</p></Link>
+                      <Link to=''><p>Peptides</p></Link>
+                      <Link to=''><p>Glycolic Acid</p></Link>
+                      <Link to=''><p>Vitamin A</p></Link>
+                      <Link to=''><p>Lactic Acid</p></Link>
                     </div>
                   </div>
                 </Box>
@@ -471,7 +589,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Populer Categories
+                      Cleansers & Exfoliators
                     </p>
                     <div
                       style={{
@@ -481,13 +599,13 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=""><p>View All Skin Care</p></Link>
-                      <Link to=""><p>New In</p></Link>
-                      <Link to=""><p>Clean skincare</p></Link>
-                      <Link to=""><p>5 Rated Products</p></Link>
-                      <Link to=""><p>Gift and Sets</p></Link>
-                      <Link to=""><p>Suprizes & Duo</p></Link>
-                      <Link to=""><p>Travel Sizes</p></Link>
+                      <Link to=""><p>Cleansers</p></Link>
+                      <Link to=""><p>Exfoliants,Peels & Scrubs</p></Link>
+                      <Link to=""><p>Toners & Mist</p></Link>
+                      <Link to=""><p>Face Wash</p></Link>
+                      <Link to=""><p>Makeup Remover</p></Link>
+                      <Link to=""><p>Men's Cleanser & Exfoliators</p></Link>
+                    
                     </div>
                   </div>
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
@@ -500,7 +618,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      By Product Types
+                      Treatments And Serums
                     </p>
                     <div
                       style={{
@@ -510,41 +628,12 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=""><p>Cleaners</p></Link>
-                      <Link to=""><p>Moisturizers</p></Link>
-                      <Link to=""><p>Serums</p></Link>
-                      <Link to=""><p>Eye Serum</p></Link>
-                      <Link to=""><p>Exfoliators</p></Link>
-                      <Link to=""><p>Masks</p></Link>
-                    </div>
-                  </div>
-
-                  <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
-                    <p
-                      style={{
-                        paddingTop: "15px",
-                        textAlign: "left",
-                        borderTop: "1px solid gray",
-                        fontWeight: "bold",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      By Ingredient
-                    </p>
-                    <div
-                      style={{
-                        textAlign: "left",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "10px",
-                      }}
-                    >
-                      <Link to=""><p>Vitamin C</p></Link>
-                      <Link to=""><p>AHA</p></Link>
-                      <Link to=""><p>Caffeine</p></Link>
-                      <Link to=""><p>Retinol</p></Link>
-                      <Link to=""><p>Lactic Acid</p></Link>
-                      <Link to=""><p>Salicylic Acid</p></Link>
+                      <Link to=""><p>Face Serums</p></Link>
+                      <Link to=""><p>Face Masks</p></Link>
+                      <Link to=""><p>Neck Cream</p></Link>
+                      <Link to=""><p>Wrinkel Cream</p></Link>
+                      <Link to=""><p>Acne Treatments</p></Link>
+                      <Link to=""><p>Dark Spot Corrector</p></Link>
                     </div>
                   </div>
 
@@ -558,7 +647,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      By Specific Concern
+                     Moisturizers
                     </p>
                     <div
                       style={{
@@ -568,12 +657,12 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <p>Acne & Blemishes</p>
-                      <p>Fine Lines & Wrinkes</p>
-                      <p>Dark Circles</p>
-                      <p>Dry Skin</p>
-                      <p>Dullness</p>
-                      <p>Lack of Firmness</p>
+                      <Link to=""><p>Face Moisturizer</p></Link>
+                      <Link to=""><p>Face Oils</p></Link>
+                      <Link to=""><p>Night Cream</p></Link>
+                      <Link to=""><p>Tinted Moisturizers</p></Link>
+                      <Link to=""><p>Essences</p></Link>
+                      <Link to=""><p>Men's Moisturizers & Treatments</p></Link>
                     </div>
                   </div>
 
@@ -587,7 +676,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Sunscreen & Suncare
+                        Eye Care
                     </p>
                     <div
                       style={{
@@ -597,12 +686,35 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=""><p>Take the SPF Quiz</p></Link>
-                      <Link to=""><p>SPF 30 and Over</p></Link>
-                      <Link to=""><p>SPF 50 and Over</p></Link>
-                      <Link to=""><p>After Sun</p></Link>
-                      <Link to=""><p>Tinted</p></Link>
-                      <Link to=""><p>Mineral</p></Link>
+                      <p>Eye Cream & Moisturizers</p>
+                      <p>Eye Treatments & Serum</p>
+                      <p>Eye Masks</p>
+                  
+                    </div>
+                  </div>
+
+                  <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
+                    <p
+                      style={{
+                        paddingTop: "15px",
+                        textAlign: "left",
+                        borderTop: "1px solid gray",
+                        fontWeight: "bold",
+                        marginBottom: "20px",
+                      }}
+                    >
+                      Lip Care
+                    </p>
+                    <div
+                      style={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      }}
+                    >
+                      <Link to=""><p>Lip Balms & Treatments</p></Link>
+                      
                     </div>
                   </div>
                 </Box>
@@ -623,7 +735,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Populer Categories
+                      Shop  By Category
                     </p>
                     <div
                       style={{
@@ -633,12 +745,15 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=''><p>View All Hair Care</p></Link>
-                      <Link to=''><p>New In</p></Link>
-                      <Link to=''><p>Clean Hair Care</p></Link>
-                      <Link to=''><p>5 Rated Products</p></Link>
-                      <Link to=''><p>Gift and Sets</p></Link>
-                      <Link to=''><p>Travel Sizes</p></Link>
+                      <Link to=''><p>Shampoo</p></Link>
+                      <Link to=''><p>Dry Sampoo</p></Link>
+                      <Link to=''><p>Conditioner</p></Link>
+                      <Link to=''><p>Hair Loss Products</p></Link>
+                      <Link to=''><p>Anti-Dandruff & Scalp Care</p></Link>
+                      <Link to=''><p>Hair Treatments</p></Link>
+                      <Link to=''><p>Styling Products</p></Link>
+                      <Link to=''><p>Tools & Brushes</p></Link>
+                      <Link to=''><p>Natural Hair Care</p></Link>
                     </div>
                   </div>
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
@@ -651,7 +766,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Products Type
+                     Shop By Hair Type
                     </p>
                     <div
                       style={{
@@ -661,12 +776,13 @@ const Navbar = () => {
                         gap: "10px",
                       }}
                     >
-                      <Link to=''> <p>Shampoo</p></Link>
-                      <Link to=''> <p>Conditioners</p></Link>
-                      <Link to=''> <p>Hair Treatments</p></Link>
-                      <Link to=''> <p>Hair Masks</p></Link>
-                      <Link to=''> <p>Hair Oils</p></Link>
-                      <Link to=''> <p>Hair Sprays</p></Link>
+                      <Link to=''> <p>Coarse</p></Link>
+                      <Link to=''> <p>Frizzy</p></Link>
+                      <Link to=''> <p>Color-Treated</p></Link>
+                      <Link to=''> <p>Curly</p></Link>
+                      <Link to=''> <p>Dry or Damaged</p></Link>
+                      <Link to=''> <p>Fine</p></Link>
+                      <Link to=''><p>Oily</p></Link>
                     </div>
                   </div>
 
@@ -680,7 +796,7 @@ const Navbar = () => {
                         marginBottom: "20px",
                       }}
                     >
-                      Hair Types
+                        More
                     </p>
                     <div
                       style={{
@@ -754,8 +870,43 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div>
+            <div id="menu-dropdown">
               <Link to=''><div id="menu-title">Makeup</div></Link>
+              <div className="menu-dropdown-content">
+                <Box display="flex" gap="50px" pt={5} padding="20px">
+                  <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
+                    <p
+                      style={{
+                        paddingTop: "15px",
+                        textAlign: "left",
+                        borderTop: "1px solid gray",
+                        fontWeight: "bold",
+                        marginBottom: "20px",
+                      }}
+                    >
+                      Shop  By Category
+                    </p>
+                    <div
+                      style={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      }}
+                    >
+                      <Link to=''><p>Shampoo</p></Link>
+                      <Link to=''><p>Dry Sampoo</p></Link>
+                      <Link to=''><p>Conditioner</p></Link>
+                      <Link to=''><p>Hair Loss Products</p></Link>
+                      <Link to=''><p>Anti-Dandruff & Scalp Care</p></Link>
+                      <Link to=''><p>Hair Treatments</p></Link>
+                      <Link to=''><p>Styling Products</p></Link>
+                      <Link to=''><p>Tools & Brushes</p></Link>
+                      <Link to=''><p>Natural Hair Care</p></Link>
+                    </div>
+                  </div>
+                  </Box>
+            </div>
             </div>
             <div>
               <Link to=''><div id="menu-title">Bath & Body</div></Link>
@@ -801,15 +952,16 @@ const Navbar = () => {
                 <DrawerCloseButton />
                 {/* {
                   isAuth? */}
-                   <DrawerHeader mt={12} onClick = {onClose} display="flex" gap={12}>
+                   <DrawerHeader onClick = {onClose} display="flex" gap={12}>
                     {/* <Text > {isAuth ? "Hii " + username : "Account"}</Text> */}
-                    <Button bgColor="black" color="white" colorScheme="none" onClick={handleLogOut}>Logout</Button>
-                 
-                </DrawerHeader> : <DrawerHeader mt={12}>
+                    <Link to="/">
+                    <Button bgColor="black" color="white" colorScheme="none"><HiHome/> {" "}Home</Button>
+                    </Link>
+                </DrawerHeader> : <DrawerHeader >
                 <Link to="/login" onClick={onClose}>
                   <Button bgColor="black" color="white" colorScheme="none">Login</Button>
                 </Link>
-                <Link to="/signup" onClick={onClose}>
+                <Link to="/register" onClick={onClose}>
                   <Button variant="outline" border=" 1px solid black" ml={4} colorScheme="none">Register</Button>
                 </Link>
               </DrawerHeader>
@@ -817,15 +969,75 @@ const Navbar = () => {
 
                 <DrawerBody>
                   <Box display="flex" flexDirection="column" gap="20px">
+                    <Flex justifyContent={"space-between"} mt={2}>
                     <Link to="" onClick={onClose}>Brands</Link>
-                    <Link to="" onClick={onClose}>Holiday Gif</Link>
-                    <Link to="" onClick={onClose}>Sale</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex>
+                    <Link to="" onClick={onClose}>Browse By</Link>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Bestsellers</Link>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
                     <Link to="" onClick={onClose}>Skin Care</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
                     <Link to="" onClick={onClose}>Hair Care</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
                     <Link to="" onClick={onClose}>Makeup</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Tools & Devices</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
                     <Link to="" onClick={onClose}>Bath & Body</Link>
-                    <Link to="" onClick={onClose}>Admin</Link>
-                    <Link to="" onClick={onClose}>Latest</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Fragrance Shop</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Gifts & Sets</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>BeautyFIX</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Offers</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>New</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    <Flex justifyContent={"space-between"} mt={2}>
+                    <Link to="" onClick={onClose}>Skin 101</Link>
+                    <MdKeyboardArrowRight/>
+                    </Flex>
+                    
+                  </Box>
+                  <Box>
+                    <Flex justifyContent={"space-between"} mt={5}>
+                      <Box>
+                  <Image
+                 style={{ width: "20px", height: "20px", borderRadius: "50%" }}
+                 src="https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg"
+                       />
+                    
+                    </Box>
+                    <Box>
+                      <Text textDecoration={"underline"}>Change</Text>
+                    </Box>
+                    </Flex>
                   </Box>
                 </DrawerBody>
 
@@ -833,7 +1045,12 @@ const Navbar = () => {
             </Drawer>
           </div>
 
-          <CgSearch size="1.5em" />
+        <Image src={logo} h={70} w={130}/>
+
+         <Box ml={270}>
+
+          {/* <CgSearch size="1.5em" /> */}
+         </Box>
         </div>
 
         <div>
@@ -842,7 +1059,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "30px", alignItems: "center",align:"right" }}>
           <Link to="/login">
             <VscAccount size="1.6em" />
           </Link>
@@ -858,9 +1075,11 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
+      
       </div>
+      
     </div>
+   
   );
 };
 
