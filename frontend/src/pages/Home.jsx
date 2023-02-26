@@ -14,7 +14,7 @@ import Navbar from '../components/Navbar'
 const Home = () => {
   return (
     <div>
- 
+    <Navbar/>
        <Box bgColor="#f2f2f2" alignItems="center" id="bottom_nav">
         <Box mt={97}
           alignItems="center"
@@ -168,7 +168,7 @@ const Home = () => {
          </Box>
 
           </Box>
-          {/* <Footer/> */}
+          <Footer/>
     </div>
   )
 }

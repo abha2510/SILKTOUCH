@@ -12,6 +12,8 @@ import {FaPaypal} from "react-icons/fa"
 import {SiPhonepe} from "react-icons/si"
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from '@chakra-ui/react'
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 const Checkout = () => {
@@ -25,7 +27,7 @@ const Checkout = () => {
 
   return (
     <div>
-      
+      <Navbar/>
       <Box border={"1px solid black"} height={90} width={"100%"}>
         <Image src={logo} width={"13%"} height={160} ml={255} mt={-8}/>
       </Box>
@@ -288,6 +290,7 @@ const Checkout = () => {
       </Stack>
      
       </Flex>
+      <Footer/>
     </div>
   )
 }

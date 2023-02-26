@@ -94,7 +94,7 @@
     .details{
         grid-template-columns: repeat(2,1fr);
         transform: scale(0.8);
-        margin-top: -60vh;
+        margin-top: -10rem;
     }
     .wishList{
         transform:scale(0.8)
@@ -104,7 +104,7 @@
     .details{
         grid-template-columns: repeat(1,1fr);
         transform: scale(0.8);
-        margin-top: -400vh;
+       margin-top: 2rem;
     }
     .wishList{
         transform:scale(0.8)
