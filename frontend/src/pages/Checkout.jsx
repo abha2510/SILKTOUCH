@@ -1,27 +1,31 @@
-import {Alert, AlertIcon, Box,Center,
+import {Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Alert, AlertIcon, Box,Center,
   Checkbox,Flex,FormControl,FormErrorMessage,
   FormHelperText,FormLabel,Image, Input,
-  InputGroup, InputLeftElement, Select} from "@chakra-ui/react"
+  InputGroup, InputLeftElement, Radio, RadioGroup, Select} from "@chakra-ui/react"
 import logo from "../assets/nbg.png";
 import React, { useState } from 'react';
 import { Stack, Text, Button } from '@chakra-ui/react';
 import {MdHome,MdLocationOn} from "react-icons/md";
-import {SearchIcon} from "@chakra-ui/icons"
+import {SearchIcon} from "@chakra-ui/icons";
+import {FcGoogle} from "react-icons/fc"
+import {FaPaypal} from "react-icons/fa"
+import {SiPhonepe} from "react-icons/si"
 
 const Checkout = () => {
   const [input, setInput] = useState('')
-
+  const [value, setValue] = React.useState('1')
   const handleInputChange = (e) => setInput(e.target.value)
 
   const isError = input === ''
 
   return (
     <div>
+      
       <Box border={"1px solid black"} height={90} width={"100%"}>
         <Image src={logo} width={"13%"} height={160} ml={255} mt={-8}/>
       </Box>
-  
-      <Stack bg={"#f2f2f2"}height={"auto"} width={"100%"} >
+      <Flex>
+      <Stack bg={"#f2f2f2"}height={"auto"} width={"100%"} border={"3px solid green"}>
 
     <Stack p="4" boxShadow="lg" borderRadius="sm" bgColor={"white"} mt={10} width={"40%"} ml={"20%"}border={"1px solid black"} letterSpacing={"wider"}>
       <Stack direction="row" alignItems="center">
@@ -226,10 +230,46 @@ const Checkout = () => {
           </Center>
          
 
+          <Accordion allowMultiple>
+  <AccordionItem>
+    <h2>
+      <AccordionButton>
+        <Box as="span" flex='1' textAlign='left'>
+          Use a differnet Payment Method
+        </Box>
+      {/* <Flex justifyContent={"space-evenly"}>
+        <FcGoogle/>Pay
+        <FaPaypal color="blue"/>PayPal
+        </Flex> */}
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
+    <AccordionPanel pb={4}>
+    <RadioGroup defaultValue='2'>
+  <Stack spacing={5} direction='row'>
+
+    <RadioGroup onChange={setValue} value={value}>
+      <Stack direction='row'>
+        <Radio value='1'><Flex><FcGoogle/>Pay</Flex></Radio>
+        <Radio value='2'><Flex><FaPaypal color="blue"/>PayPal</Flex></Radio>
+        <Radio value='3'><Flex><SiPhonepe color="indigo"/></Flex></Radio>
+      </Stack>
+    </RadioGroup>
+    </Stack>
+    </RadioGroup>
+    </AccordionPanel>
+  </AccordionItem>
+  </Accordion>
+
+  <Button bgColor={"black"} color={"white"}>
+      Submit
+    </Button>
       </Stack>
      </Stack>
-     
+     <Box h={200} w={200} border={"1px solid black"}></Box>
       </Stack>
+     
+      </Flex>
     </div>
   )
 }
