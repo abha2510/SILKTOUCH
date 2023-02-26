@@ -4,8 +4,10 @@ import React,{useState} from 'react'
 import "./register.css"
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
+
 import { useToast } from '@chakra-ui/react'
 import {useNavigate} from "react-router-dom"
+
 
 const Register = () => {
   const toast=useToast()

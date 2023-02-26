@@ -11,11 +11,12 @@ import Register from '../pages/register/Register'
 import Login from '../pages/login/Login'
 import Home from "../pages/Home";
 import Checkout from "../pages/Checkout";
-import { Iron } from '../categoryFolder/allRoute/Iron/Iron'
+import Bestsellers, { Iron } from '../categoryFolder/allRoute/Iron/Bestseller'
 import Page from '../pages/Page';
 import CartPage from "../pages/CartPage";
 import Mobiles from "../categoryFolder/allRoute/mobiles/mobiles"
-
+import Makeup from '../categoryFolder/allRoute/makeup/makeup'
+import Bath_Body from '../categoryFolder/allRoute/juicers/bath&body'
 
 const AllRoutes = () => {
   return (
@@ -24,8 +25,10 @@ const AllRoutes = () => {
 
    <Route path="/" element={<Home/>}></Route>
    <Route path="/checkout" element={<Checkout/>}></Route>
-   <Route path="/iron" element={<Iron/>}></Route>
+   <Route path="/bestseller" element={<Bestsellers/>}></Route>
    <Route path="/mobiles" element={<Mobiles/>}></Route>
+   <Route path="/makeup" element={<Makeup/>}></Route>
+   <Route path="/bath&beauty" element={<Bath_Body/>}></Route>
    <Route path="/page" element={<Page/>}></Route>
    <Route path="/cartpage" element={<CartPage/>}></Route>
    <Route path="/admin" element={<Admin />}></Route>
