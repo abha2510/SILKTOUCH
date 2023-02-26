@@ -7,6 +7,11 @@ import GoogleIcon from '@mui/icons-material/Google';
 import {useNavigate} from "react-router-dom"
 import { useToast } from '@chakra-ui/react'
 
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+
+
+
 
 const Login = () => {
   const toast=useToast()
@@ -75,7 +80,9 @@ const Login = () => {
   }
 
   return (
+    <>
     
+    {/* <Navbar/> */}
     <div className='login-container'>
        <div className='navbar'>
          Navbar
@@ -138,6 +145,8 @@ const Login = () => {
        
        </div>
     </div>
+    {/* <Footer/> */}
+    </>
   )
 }
 

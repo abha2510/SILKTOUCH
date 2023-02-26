@@ -6,6 +6,8 @@ import { FaGooglePay } from "react-icons/fa";
 import { SiPaytm } from "react-icons/si";
 import { GrPaypal } from "react-icons/gr";
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const CartPage = () => {
     const [value,setValue]=useState(1);
@@ -62,6 +64,7 @@ useEffect(()=>{
  
      
     <div>
+      <Navbar/>
   {/* {
     shop.map((el)=>{
       return <div key={el._id}>
@@ -174,7 +177,7 @@ useEffect(()=>{
 
 }
 
-
+   <Footer/>
     </div>
   )
 }

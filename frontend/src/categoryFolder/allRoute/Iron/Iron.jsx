@@ -3,41 +3,39 @@ import { useEffect,useState} from 'react';
 import "./Iron.css"
 import {
   Card, CardBody, Heading, Box, Checkbox, Text, Image, Skeleton, Stack, CloseButton, useDisclosure,Flex,
-  Modal, ModalContent, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Button,Hide, SkeletonCircle, SimpleGrid
+  Modal, ModalContent, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Button,Hide
 } from '@chakra-ui/react'
+import {RiHeartAddFill} from "react-icons/ri"
 import { Search2Icon } from '@chakra-ui/icons'
-import { AiFillStar, AiOutlineHeart,AiOutlineStar } from "react-icons/ai"
+import { AiFillStar, AiOutlineHeart, AiFillHeart,AiOutlineStar } from "react-icons/ai"
  import useCustom from '../../customs/custom';
-import { getPostsIron, getPostsJuicers } from '../../api/api.action';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Bestsellers = () => {
-   let [posts,loading,datas,asc,desc,filter,filterBack,cart,loader,wishList,wish] = useCustom()
+const Iron = () => {
+   let [posts,loading,datas,asc,desc,filter,filterBack,cart,loader,wishList,wish,addtocart,wishRemove] = useCustom()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const dispatch = useDispatch()
+  const [arr, setArr] = useState([])
 
-
-  let addtocart=(elem)=>{
-    let store = JSON.parse(localStorage.getItem("product"))
-    if(store==null){ store=[]};
-    store.push(elem)
-    localStorage.setItem("product",JSON.stringify(store))
-    console.log(store)
-   }
-
-  // console.log("p", posts)
+  console.log("p", posts)
   if (!datas[0]) {
     datas = posts
   }
 
+ 
   useEffect(() => {
-    dispatch(getPostsIron())
+    loader("Irons")
   }, []);
 
   // converting number of ratings into stars to show in ui
   let star = (n) => {
     if (n > 0 && n <= 1.4) {
+      return<>
       <AiFillStar size="1.5rem" />
+      <AiOutlineStar size="1.5rem"/>
+      <AiOutlineStar size="1.5rem"/>
+      <AiOutlineStar size="1.5rem"/>
+      <AiOutlineStar size="1.5rem"/>
+      </>
     } else if (n >= 1 && n <= 2.4) {
       return <>
         <AiFillStar size="1.5rem" />
@@ -81,30 +79,27 @@ const Bestsellers = () => {
     }
    
   }
-  
 
-  localStorage.setItem('carts', JSON.stringify(cart))
+  // localStorage.setItem('carts', JSON.stringify(cart))
 
-  localStorage.setItem('wish', JSON.stringify(wish))
+  // localStorage.setItem('wish', JSON.stringify(wish))
 
   // if page loads show skeleton
   if (loading) {
-   
-
-    // return <Stack>
-    //   <Skeleton height='14vh' />
-    //   <Skeleton height='14vh' />
-    //   <Skeleton height='14vh' />
-    //   <Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' />
-    // </Stack>
+    return <Stack>
+      <Skeleton height='14vh' />
+      <Skeleton height='14vh' />
+      <Skeleton height='14vh' />
+      <Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' />
+    </Stack>
   }
 
   return (
     <>
-     <br/><br/>
-      <div style={{ display: "flex" ,marginTop:"80px"}}>
+     <br/><br/><br/><br/><br/><br/>
+      <div style={{ display: "flex" }}>
         {/* ui left part */}
-        <Box className="m-left"> 
+        <Box className="m-left">
 
           {/* filter   feading    */}
           <Card className='filter' bg={'whiteAlpha.900'} w={[100, 150, 200, 300]}>
@@ -158,79 +153,39 @@ const Bestsellers = () => {
           
           <Card border="1px solid black" h={["7vh","10vh","12vh",'15vh']} p={["0.5rem","1rem","1.5rem",'2rem']}fontSize={["8px","12px","16px",'18x']}>
             <Flex>
-              <Box w="50%">
+            <Box w="80%">
                 <Flex>
-                <Text w="30%">Sort By :</Text>
+                <Text w="10%">Sort By :</Text>
                 <Text className='text' onClick={asc}>Price(Low-High) </Text> 
                 <Text className='text' onClick={desc}>Price(High-Low)</Text>
-              
               </Flex>
               </Box>
-              <Box w="50%"></Box>
+              <Link to="/wish">
+              <Box w="20%">
+              <RiHeartAddFill size="2rem" justifyContent={"flex-end"}/>
+              </Box>
+              </Link>
             </Flex>
           </Card>
           {/* ui fetched data */}
-          {loading ?(
-          <SimpleGrid w="100%" columns={[2, 2, 3]} spacing="40px" pt="10">
-          {Array(10)
-            .fill("")
-            .map((e) => (
-              <Box padding="6" h="470px " boxShadow="md" bg="white">
-                <Skeleton
-                  h="200px"
-                  startColor="pink.100"
-                  mb="25px"
-                  endColor="orange.100"
-                  size="10"
-                />
-                <Skeleton
-                  h="16px"
-                  w="100%"
-                  startColor="orange.300"
-                  endColor="pink.200"
-                  mb="15px"
-                />
-                <Skeleton h="16px" w="85%" mb="15px" />
-                <Skeleton h="30px" mb="15px" w="55%" />
-                <Flex mb="15px">
-                  {Array(5)
-                    .fill("")
-                    .map(() => (
-                      <SkeletonCircle
-                        endColor="yellow.100"
-                        startColor="gold"
-                        mr="5px"
-                        size="15px"
-                      />
-                    ))}
-                </Flex>
-                <Skeleton h="20px" mb="15px" w="30%" />
-                <Skeleton h="30px" mb="15px" w="100%" endColor="gray.600" />
-              </Box>
-            ))}
-        </SimpleGrid>
-      ) 
-          :
-            (<Box className="details" h="auto">
+          {!loading &&
+            <Box className="details" h="auto">
               {datas.map((el)=>(
-          
-                <Card key={el.id} h={['90vh']} mt={["0.5rem","1rem","1.5rem","2rem"]}>
+                <Card key={el.id} h={['80vh']} mt={["0.5rem","1rem","1.5rem","2rem"]}>
                   
                   <Box onClick={onOpen} height={"auto"} >
                   <AiOutlineHeart size="1.6rem" marginRight="2px" border="5px solid black"/>
                   </Box>
-                  <Image src={el.api_featured_image} h="68%"/>
+                  <Image src={el.url} h="68%"/>
                   <Box style={{ height: '32%' }} _hover={{boxShadow:"none"}}>
                     <Box m="auto" w="90%" h="40%" overflow={'hidden'} p="0.2rem">
-                    <Text>{el.name}</Text>
+                    <Text>{el.description}</Text>
                     </Box>
                     <Text border="1px solid black" w="60%" m="auto">&#36;11 SkinCeuticals Gift</Text>
                     <Text><b>&#36; {el.price}</b></Text>
                     <Text style={{ display: "flex", marginLeft: "30%" }}>{el.rating ? star(el.rating) : star(0)}</Text>
                    {/* <Link to="/page"> */}
-                    <Button color="white" bg="black" w="100%" borderRadius={"0px"} _hover={{bg:"grey"}}
-                    onClick={()=>addtocart(el)}
-                    >Add To Cart</Button>
+                    <Button color="white" bg="black" w="100%" borderRadius={"0px"} _hover={{bg:"grey"}} onClick={()=>addtocart(el)}>Add To Cart</Button>
                     {/* </Link> */}
                   </Box>
 
@@ -248,14 +203,14 @@ const Bestsellers = () => {
                           Close
                         </Button>
                         
-                        <Button variant='ghost' onClick={() => { wishList(el.id) }}>Add</Button>
+                        <Button variant='ghost' onClick={() => { wishList(el) }}>Add</Button>
                       </ModalFooter>
                     </ModalContent>
                   </Modal>
 
                 </Card>
               ))}
-            </Box>)
+            </Box>
           }
         </Box>
       </div>
@@ -263,4 +218,4 @@ const Bestsellers = () => {
   )
 }
 
-export default Bestsellers
+export default Iron
