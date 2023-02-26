@@ -8,8 +8,14 @@ function App() {
   return (
     <div className="App">
 
+
     <AllRoutes/>
    
+
+   {/* <Navbar/> */}
+    <AllRoutes/>
+   
+    {/* <Footer/> */}
 
     </div>
 
