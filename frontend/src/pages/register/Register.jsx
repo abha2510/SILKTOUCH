@@ -5,9 +5,13 @@ import "./register.css"
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 
+import { useToast } from '@chakra-ui/react'
+import {useNavigate} from "react-router-dom"
+
 
 const Register = () => {
-
+  const toast=useToast()
+  const navigate=useNavigate()
    const [name,setName]=useState("")
    const [email,setEmail]=useState("")
    const [confirm_email,setConfirmemail]=useState("")
@@ -16,9 +20,10 @@ const Register = () => {
    const [mobile,setMobile]=useState("")
     
    const [emailempty,setEmailempty]=useState(false)
-
-
-   const handleSubmit=()=>{
+    const [passempty,setPassempty]=useState(false)
+    const [confirm_emailempty,setConfirm_emailempty]=useState(false)
+  const [confirm_passempty,setConfirm_passempty]=useState(false)
+   const handleSubmit=async()=>{
      const payload={
        name,email,confirm_email,password,confirm_password,mobile
      }
@@ -28,15 +33,66 @@ const Register = () => {
      }else{
       setEmailempty(false)
      }
+     if(password===""){
+       setPassempty(true)
+     }else{
+      setPassempty(false)
+     }
 
-     fetch("https://prickly-beret-goat.cyclic.app/users/register",{
+     if(confirm_email===""){
+      setConfirm_emailempty(true)
+     }else{
+      setConfirm_emailempty(false)
+     }
+
+      if(confirm_password===""){
+        setConfirm_passempty(true)
+      }else{
+        setConfirm_passempty(false)
+      }
+
+
+    await fetch("https://prickly-beret-goat.cyclic.app/users/register",{
          method:"POST",
          body:JSON.stringify(payload),
          headers:{
           "Content-type":"application/json"
          }
      })
-     .then(res=>console.log(res))
+     .then(res=>res.json())
+     .then(res=>{
+            if(res.msg==="User already registered"){
+              toast({
+                title: 'User already registered',
+                description: "Existing User",
+                status: 'warning',
+                duration: 3000,
+                isClosable: true,
+              })
+            }else if(res.msg==="New User has been registered"){
+              toast({
+                title: 'Successfully registered',
+                description: "Success",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+              })
+              navigate("/")
+            }else{
+              toast({
+                title: 'Something went wrong',
+                description: "Something went wrong",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+              })
+            }
+
+     })
+    
+     
+    
+     
      .catch(err=>console.log(err.message))
    }
 
@@ -99,7 +155,7 @@ const Register = () => {
                        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
                      </div>
                      {
-                      emailempty===true?<div className='email-error'><h1>Email feild is required Feild</h1></div>:<div className='email-no-error'></div>
+                      emailempty===true?<div className='email-error'><h1>Email feild is required </h1></div>:<div className='email-no-error'></div>
                      }
                      {/* 3rd input */}
                      <div className='input-title-div'>
@@ -111,6 +167,9 @@ const Register = () => {
                       {/* input-3 */}
                        <input type="email" value={confirm_email} onChange={(e)=>setConfirmemail(e.target.value)} />
                      </div>
+                     {
+                      confirm_emailempty===true?<div className='confirm-email-error'><h1>Confirm Email feild is required </h1></div>:<div className='pass-no-error'></div>
+                     }
                      {/* 4th input */}
                      <div className='input-title-div'>
                       <h1 className='input-title'>
@@ -121,20 +180,27 @@ const Register = () => {
                       {/* input-4 */}
                        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                      </div>
+                     {
+                      passempty===true?<div className='pass-error'><h1>Password feild is required </h1></div>:<div className='pass-no-error'></div>
+                     }
                      {/* 5 input */}
                      <div className='input-title-div'>
                       <h1 className='input-title'>
                         *Confirm Password
                       </h1>
                      </div>
+                   
                      {/* input-6 */}
                      <div className='input-div'>
                       {/* input-6 */}
                        <input type="password" value={confirm_password} onChange={(e)=>setConfirmpassword(e.target.value)} />
                      </div>
+                     {
+                      confirm_passempty===true?<div className='confirm-pass-error'><h1>Confirm password feild is required </h1></div>:<div className='pass-no-error'></div>
+                     }
                      <div className='input-title-div'>
                       <h1 className='input-title'>
-                        *Cell Phone Number (Optional)
+                        *Cell Phone Number (Mandatory)
                       </h1>
                      </div>
                      <div className='input-div'>

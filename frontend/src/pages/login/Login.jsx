@@ -5,11 +5,15 @@ import "./login.css"
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import {useNavigate} from "react-router-dom"
+import { useToast } from '@chakra-ui/react'
+
 
 const Login = () => {
+  const toast=useToast()
   const navigate=useNavigate()
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  
 
   const handleSubmit=()=>{
      const payload={email,password}
@@ -21,19 +25,51 @@ const Login = () => {
           "Content-type":"application/json"
          }
      }).then(res=>res.json())
-     .then(res=>{console.log(res)
-      localStorage.setItem("token",res.token)
-      if(email==="admin@gmail.com" && password==="admin"){
+     .then(res=>{
+      console.log(res.msg)
+      if(res.msg==="Login Sucessfully!!"){
+        
+        if(email==="admin@gmail.com" && password==="admin"){
           navigate("/admin")
+          toast({
+            title: 'Successfully Login',
+            description: "Redirected to Pages",
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+          })
       }else{
-          navigate("/")
+        toast({
+          title: 'Successfully Login',
+          description: "Redirected to Pages",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+        navigate("/")
       }
+        
+       
+      }else if(res.msg!=="Login Sucessfully!!"){
+        toast({
+          title: 'Wrong Credentials',
+          description: "Not Found",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+        navigate("/login")
+      }
+      localStorage.setItem("token",res.token)
+      
   
-      // navigate("/admin")
+      
     })
-     .catch(err=>console.log(err.message))
+    
+     .catch(err=>console.log(err))
   }
 
+  
   const handleRegisterRoute=()=>{
     navigate("/register")
   }
@@ -90,7 +126,7 @@ const Login = () => {
                    </div>
                 </div>
                 </div>
-
+          
                </div>
         </div>
         <div className='right-side'>
@@ -99,6 +135,7 @@ const Login = () => {
           </div>
           <button className='login-button' onClick={handleRegisterRoute}>Register</button>
         </div>
+       
        </div>
     </div>
   )
