@@ -2,11 +2,6 @@ import { API_GET_ERROR,
     API_GET_LOADING, 
     API_GET_SUCCESS,
     Update_Data
-   // API_UPDATE_SUCCESS,
-   // API_UPDATE_LOADING,
-   // API_UPDATE_ERROR, 
-   // API_DELETE, 
-    //API_ADD 
 } from "./api.type";
 import axios from 'axios';
 
@@ -14,9 +9,9 @@ export const getPosts=()=> async(dispatch)=>{
     dispatch({type:API_GET_LOADING});
 
     try{
-        let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
-        console.log(res)
-        dispatch({type:API_GET_SUCCESS, payload : res.data.makeup})
+        let res= await axios.get('https://makeup-api.herokuapp.com/api/v1/products.json?&product_type=foundation&price_greater_than=12');
+        // console.log(res.data)
+        dispatch({type:API_GET_SUCCESS, payload : res.data})
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
     }
@@ -29,11 +24,10 @@ export const updatePosts=(datas)=>async (dispatch)=>{
 
 export const getPostsIron=()=> async(dispatch)=>{
     dispatch({type:API_GET_LOADING});
-
     try{
-        let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
-        console.log(res)
-        dispatch({type:API_GET_SUCCESS, payload : res.data.Iron})
+        let res= await axios.get('https://makeup-api.herokuapp.com/api/v1/products.json?&product_type=mascara');
+        dispatch({type:API_GET_SUCCESS, payload : res.data})
+        console.log(res.data);
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
     }
@@ -41,20 +35,24 @@ export const getPostsIron=()=> async(dispatch)=>{
 export const getPostsMobile=()=> async(dispatch)=>{
     dispatch({type:API_GET_LOADING});
 
-    try{
-        let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
-        dispatch({type:API_GET_SUCCESS, payload : res.data.mobiles})
-        console.log(res.data.mobiles)
-    }catch(e){
-        dispatch({type : API_GET_ERROR, payload: e.message})
-    }
+    fetch("https://prickly-beret-goat.cyclic.app/products",{  
+        headers:{
+         "Authorization":localStorage.getItem("token")
+        }
+    })
+    .then(res=>res.json())
+    .then(res=>
+        // console.log(res)
+        dispatch({type:API_GET_SUCCESS, payload : res})     
+    )
+    .catch(err=>console.log(err))
 }
 export const getPostsJuicers=()=> async(dispatch)=>{
     dispatch({type:API_GET_LOADING});
-
     try{
-        let res= await axios.get(' https://shines-node-deploy.onrender.com/products');
-        dispatch({type:API_GET_SUCCESS, payload : res.data.juicers})
+        let res= await axios.get('https://makeup-api.herokuapp.com/api/v1/products.json?&product_type=blush&price_greater_than=20');
+        console.log(res.data)
+        dispatch({type:API_GET_SUCCESS, payload : res.data})
     }catch(e){
         dispatch({type : API_GET_ERROR, payload: e.message})
     }

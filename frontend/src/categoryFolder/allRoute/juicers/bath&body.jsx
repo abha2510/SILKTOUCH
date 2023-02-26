@@ -1,39 +1,21 @@
 import React from 'react'
 import { useEffect,useState} from 'react';
-import "./mobiles.css"
+import "./juicers.css"
 import {
   Card, CardBody, Heading, Box, Checkbox, Text, Image, Skeleton, Stack, CloseButton, useDisclosure,Flex,
-  Modal, ModalContent, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Button,Hide
+  Modal, ModalContent, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Button,Hide, SkeletonCircle, SimpleGrid
 } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
-import { AiFillStar, AiOutlineHeart, AiFillHeart,AiOutlineStar } from "react-icons/ai"
+import { AiFillStar, AiOutlineHeart,AiOutlineStar } from "react-icons/ai"
  import useCustom from '../../customs/custom';
-import { Link } from 'react-router-dom';
+import { getPostsJuicers } from '../../api/api.action';
+import { useDispatch } from 'react-redux';
 
-const Mobiles = () => {
+const Bath_Body = () => {
    let [posts,loading,datas,asc,desc,filter,filterBack,cart,loader,wishList,wish] = useCustom()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [prod,setProd]=useState([])
+  const dispatch = useDispatch()
 
-
-  useEffect(()=>{
-  //   fetch("https://prickly-beret-goat.cyclic.app/products",{  
-  //     headers:{
-  //      "Authorization":localStorage.getItem("token")
-  //     }
-  // })
-  // .then(res=>res.json())
-  // .then(res=>
- 
-  //    setProd(res)
-
-  // //  console.log(res)
-  // )
-
-
-  // .catch(err=>console.log(err))
-    
-  })
 
   let addtocart=(elem)=>{
     let store = JSON.parse(localStorage.getItem("product"))
@@ -49,7 +31,7 @@ const Mobiles = () => {
   }
 
   useEffect(() => {
-    loader()
+    dispatch(getPostsJuicers())
   }, []);
 
   // converting number of ratings into stars to show in ui
@@ -107,12 +89,14 @@ const Mobiles = () => {
 
   // if page loads show skeleton
   if (loading) {
-    return <Stack>
-      <Skeleton height='14vh' />
-      <Skeleton height='14vh' />
-      <Skeleton height='14vh' />
-      <Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' />
-    </Stack>
+   
+
+    // return <Stack>
+    //   <Skeleton height='14vh' />
+    //   <Skeleton height='14vh' />
+    //   <Skeleton height='14vh' />
+    //   <Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' /><Skeleton height='14vh' />
+    // </Stack>
   }
 
   return (
@@ -186,21 +170,62 @@ const Mobiles = () => {
             </Flex>
           </Card>
           {/* ui fetched data */}
-          {!loading &&
-            <Box className="details" h="auto">
+          {loading ?(
+          <SimpleGrid w="100%" columns={[2, 2, 3]} spacing="40px" pt="10">
+          {Array(10)
+            .fill("")
+            .map((e) => (
+              <Box padding="6" h="470px " boxShadow="md" bg="white">
+                <Skeleton
+                  h="200px"
+                  startColor="pink.100"
+                  mb="25px"
+                  endColor="orange.100"
+                  size="10"
+                />
+                <Skeleton
+                  h="16px"
+                  w="100%"
+                  startColor="orange.300"
+                  endColor="pink.200"
+                  mb="15px"
+                />
+                <Skeleton h="16px" w="85%" mb="15px" />
+                <Skeleton h="30px" mb="15px" w="55%" />
+                <Flex mb="15px">
+                  {Array(5)
+                    .fill("")
+                    .map(() => (
+                      <SkeletonCircle
+                        endColor="yellow.100"
+                        startColor="gold"
+                        mr="5px"
+                        size="15px"
+                      />
+                    ))}
+                </Flex>
+                <Skeleton h="20px" mb="15px" w="30%" />
+                <Skeleton h="30px" mb="15px" w="100%" endColor="gray.600" />
+              </Box>
+            ))}
+        </SimpleGrid>
+      ) 
+          :
+            (<Box className="details" h="auto">
               {datas.map((el)=>(
-                <Card key={el.id} h={['80vh']} mt={["0.5rem","1rem","1.5rem","2rem"]}>
+          
+                <Card key={el.id} h={['70vh']} mt={["0.5rem","1rem","1.5rem","2rem"]}>
                   
                   <Box onClick={onOpen} height={"auto"} >
                   <AiOutlineHeart size="1.6rem" marginRight="2px" border="5px solid black"/>
                   </Box>
-                  <Image src={el.img_url_1} h="68%"/>
+                  <Image src={el.image_link} h="68%"/>
                   <Box style={{ height: '32%' }} _hover={{boxShadow:"none"}}>
                     <Box m="auto" w="90%" h="40%" overflow={'hidden'} p="0.2rem">
-                    <Text>{el.description}</Text>
+                    <Text>{el.name}</Text>
                     </Box>
                     <Text border="1px solid black" w="60%" m="auto">&#36;11 SkinCeuticals Gift</Text>
-                    <Text><b>&#36; {el.mrp}</b></Text>
+                    <Text><b>&#36; {el.price}</b></Text>
                     <Text style={{ display: "flex", marginLeft: "30%" }}>{el.rating ? star(el.rating) : star(0)}</Text>
                    {/* <Link to="/page"> */}
                     <Button color="white" bg="black" w="100%" borderRadius={"0px"} _hover={{bg:"grey"}}
@@ -230,7 +255,7 @@ const Mobiles = () => {
 
                 </Card>
               ))}
-            </Box>
+            </Box>)
           }
         </Box>
       </div>
@@ -238,4 +263,4 @@ const Mobiles = () => {
   )
 }
 
-export default Mobiles
+export default Bath_Body

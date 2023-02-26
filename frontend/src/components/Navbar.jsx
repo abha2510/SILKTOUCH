@@ -256,14 +256,14 @@ const Navbar = () => {
               >
                 LOGIN
               </Button></Link> */}
-
+             <Link to="/login">
               <Button
               colorScheme="none"
               w="full"
               bgColor="black"
               borderRadius={0}>LOGIN</Button>
-              
-                <Link to="/signup">
+              </Link>
+                <Link to="/register">
                   <Button
                     colorScheme="none"
                     mt={4}
@@ -295,7 +295,7 @@ const Navbar = () => {
             </div>
 
             <div class="dropdown">
-              <Link to="/cartpage"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <Link to="/page"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
                 <div id="cart-icon">
                   <FaShoppingCart size="1.6em" />
                   {/* <p className="cartValue">{cartItems.length}</p> */}
@@ -458,7 +458,7 @@ const Navbar = () => {
             </div>
 
             <div id="menu-dropdown">
-              <Link to='/iron'> <div id="menu-title">Bestsellers</div></Link>
+              <Link to='/bestseller'> <div id="menu-title">Bestsellers</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ display: "flex", gap: "20px" }}>
@@ -871,7 +871,7 @@ const Navbar = () => {
             </div>
 
             <div id="menu-dropdown">
-              <Link to=''><div id="menu-title">Makeup</div></Link>
+              <Link to='/makeup'><div id="menu-title">Makeup</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>
@@ -909,7 +909,7 @@ const Navbar = () => {
             </div>
             </div>
             <div>
-              <Link to=''><div id="menu-title">Bath & Body</div></Link>
+              <Link to='/bath&beauty'><div id="menu-title">Bath & Body</div></Link>
             </div>
             <div>
               <Link to=''><div id="menu-title">Fragrance Shop</div></Link>
