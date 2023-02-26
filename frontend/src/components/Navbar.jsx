@@ -295,12 +295,12 @@ const Navbar = () => {
             </div>
 
             <div class="dropdown">
-              <Link to="/page"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <Link to="/cartpage"><div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
                 <div id="cart-icon">
                   <FaShoppingCart size="1.6em" />
                   {/* <p className="cartValue">{cartItems.length}</p> */}
                 </div>
-
+                 
                 <Text>Cart</Text>
               </div></Link>
               <div class="dropdown-content">
@@ -321,7 +321,7 @@ const Navbar = () => {
           >
             <Link to=''><div id="menu-title">Brands</div></Link>
             <div id="menu-dropdown">
-              <Link to='/mobiles'><div id="menu-title">Brower By</div></Link>
+              <Link to='/browserby'><div id="menu-title">Brower By</div></Link>
               <div className="menu-dropdown-content">
                 <Box display="flex" gap="50px" pt={5} padding="20px">
                   <div style={{ fontFamily: "sans-serif", paddingLeft: "20px" }}>

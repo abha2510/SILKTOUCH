@@ -10,8 +10,13 @@ import {SearchIcon} from "@chakra-ui/icons";
 import {FcGoogle} from "react-icons/fc"
 import {FaPaypal} from "react-icons/fa"
 import {SiPhonepe} from "react-icons/si"
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from '@chakra-ui/react'
+
 
 const Checkout = () => {
+  const navigate=useNavigate()
+  const toast = useToast()
   const [input, setInput] = useState('')
   const [value, setValue] = React.useState('1')
   const handleInputChange = (e) => setInput(e.target.value)
@@ -261,12 +266,25 @@ const Checkout = () => {
   </AccordionItem>
   </Accordion>
 
-  <Button bgColor={"black"} color={"white"}>
+
+<Link to="/">
+  <Button bgColor={"black"} color={"white"}
+  onClick={() =>
+    toast({
+      title: 'Order Placed Sucessfully!!.',
+      description: "We've created your account for you.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,    
+    })
+  }>
       Submit
+      
     </Button>
+    </Link>
       </Stack>
      </Stack>
-     <Box h={200} w={200} border={"1px solid black"}></Box>
+
       </Stack>
      
       </Flex>
